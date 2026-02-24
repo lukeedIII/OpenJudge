@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="100%" height="100%">
+  <defs>
+    <!-- Dark glassmorphism background gradient -->
+    <linearGradient id="bgGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0f"/>
+      <stop offset="50%" stop-color="#12121a"/>
+      <stop offset="100%" stop-color="#050508"/>
+    </linearGradient>
+
+    <!-- Glowing accent gradient for the scales -->
+    <linearGradient id="neonCyan" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="100%" stop-color="#4facfe"/>
+    </linearGradient>
+
+    <!-- Soft glow filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="300" fill="url(#bgGlow)" rx="16"/>
+
+  <!-- Left: Glowing Scales of Justice Icon -->
+  <g transform="translate(60, 50)" filter="url(#glow)">
+    <!-- Central Pillar -->
+    <rect x="85" y="40" width="10" height="120" fill="url(#neonCyan)" rx="3"/>
+    <path d="M 60 160 L 120 160 L 105 175 L 75 175 Z" fill="url(#neonCyan)"/>
+    <path d="M 90 20 L 90 40" stroke="url(#neonCyan)" stroke-width="6" stroke-linecap="round"/>
+    
+    <!-- Crossbeam -->
+    <rect x="20" y="40" width="140" height="6" fill="url(#neonCyan)" rx="3"/>
+    
+    <!-- Left Scale (Code/Data) -->
+    <path d="M 30 46 L 10 100" stroke="url(#neonCyan)" stroke-width="2" fill="none"/>
+    <path d="M 30 46 L 50 100" stroke="url(#neonCyan)" stroke-width="2" fill="none"/>
+    <path d="M 5 100 Q 30 120 55 100 Z" fill="url(#neonCyan)"/>
+    
+    <!-- Right Scale (Logic/Execution) -->
+    <path d="M 150 46 L 130 100" stroke="url(#neonCyan)" stroke-width="2" fill="none"/>
+    <path d="M 150 46 L 170 100" stroke="url(#neonCyan)" stroke-width="2" fill="none"/>
+    <path d="M 125 100 Q 150 120 175 100 Z" fill="url(#neonCyan)"/>
+
+    <!-- Orbital Energy Rings -->
+    <circle cx="90" cy="110" r="70" stroke="url(#neonCyan)" stroke-width="1" fill="none" stroke-dasharray="4 8" opacity="0.5"/>
+    <circle cx="90" cy="110" r="90" stroke="url(#neonCyan)" stroke-width="1" fill="none" stroke-dasharray="1 15" opacity="0.3"/>
+  </g>
+
+  <!-- Right: Typography -->
+  <g transform="translate(290, 140)">
+    <text x="0" y="0" font-family="'Inter', -apple-system, sans-serif" font-weight="900" font-size="64" fill="#ffffff" letter-spacing="2">
+      OPEN<tspan fill="url(#neonCyan)">JUDGE</tspan>
+    </text>
+    <text x="5" y="35" font-family="'Inter', monospace, sans-serif" font-weight="400" font-size="16" fill="#8892b0" letter-spacing="4">
+      AUTONOMOUS VERIFICATION &amp; ENFORCEMENT RUNTIME
+    </text>
+    
+    <!-- Decorative Code Bracket -->
+    <text x="0" y="-50" font-family="monospace" font-size="14" fill="#4facfe" opacity="0.6">
+      &gt; SYSTEM_HALT_FALSE :: INIT_JUDGMENT_LOOP
+    </text>
+  </g>
+</svg>
