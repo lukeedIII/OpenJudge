@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.env
+failed_state.log
+
+# ignore artifacts
+.gemini/
+openjudge_memory_db/
