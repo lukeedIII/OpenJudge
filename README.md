@@ -27,8 +27,10 @@ The "Ledger of Truth". It prevents context bloat by maintaining a rolling histor
 Provides deterministic interaction with the physical environment.
 - **System**: Secure `subprocess` routines for executing arbitrary Python and Bash with strict timeouts.
 - **I/O**: Read/write access to the local filesystem.
-- **Network**: Integration with DuckDuckGo for factual, real-time external validation.
-- **Vision**: Integration with the OpenAI Vision API, allowing the runtime to physically inspect rendered pixels, DOM states, and UI components.
+- **Network & Browser**: Integration with DuckDuckGo for fast text searches, and **Playwright** for full headless Chromium browser automation (DOM interaction, scraping, UI screenshots).
+- **Vision**: Integration with the OpenAI Vision API, allowing the runtime to physically inspect rendered pixels and web DOM states.
+- **Repository Management**: Native **Git** wrapper for zero-hallucination orchestration (clone, checkout, commit, push) without raw bash errors.
+- **Long-Term Memory**: Integration with **ChromaDB** for semantic RAG storage, allowing OpenJudge to permanently index codebases and past actions without blowing up the context window.
 
 ### 4. Self-Healing Loop (`main.py`)
 A continuous autonomous routine executing within a terminal UI. Structural violations (e.g., malformed XML) trigger `FormatViolationError`, initiating an automatic `System Override` injected into the Ledger of Truth. This forces the model to correct its own schema without crashing the runtime process.

@@ -1,6 +1,6 @@
 {
     "name": "openjudge",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Empirical verification-and-enforcement loop for autonomous systems.",
     "main": "bin/openjudge.js",
     "bin": {
