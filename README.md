@@ -44,7 +44,7 @@ A continuous autonomous routine executing within a terminal UI. Structural viola
 ### Option 1: Global NPM Install (Recommended)
 You can install and run OpenJudge anywhere on your system via NPM:
 ```bash
-npm install -g openjudge
+npm install -g @lukeediii/openjudge
 ```
 *Note: Ensure your `OPENAI_API_KEY` is exported in your environment variables before running.*
 
@@ -66,7 +66,7 @@ openjudge
 ```
 Or execute directly without installing:
 ```bash
-npx openjudge
+npx @lukeediii/openjudge
 ```
 
 ### Using Python Local Source
