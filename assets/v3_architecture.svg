@@ -1,19 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 450" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 350" width="100%" height="100%">
   <defs>
-    <!-- Background Gradient (Matched to logo.svg) -->
+    <!-- Background Base (Matched exactly to logo.svg) -->
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#05060a"/>
       <stop offset="50%" stop-color="#0a0c14"/>
       <stop offset="100%" stop-color="#020305"/>
     </linearGradient>
 
-    <!-- Glassmorphism Boxes -->
-    <linearGradient id="glassBox" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.05)" />
-      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.01)" />
-    </linearGradient>
-
-    <!-- Neon Accents -->
+    <!-- Neon Gradients -->
     <linearGradient id="neonOrange" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ff4b2b"/>
       <stop offset="100%" stop-color="#ff416c"/>
@@ -28,30 +22,14 @@
     </linearGradient>
 
     <!-- Glowing Filters -->
-    <filter id="glowCyan" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="6" result="blur" />
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
       <feMerge>
         <feMergeNode in="blur" />
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
-    <filter id="glowOrange" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="6" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-    <filter id="glowGreen" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="6" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-    
-    <!-- Light Glow for crisp text/borders -->
-    <filter id="lightGlow" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="lightGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="2" result="blur" />
       <feMerge>
         <feMergeNode in="blur" />
@@ -59,235 +37,200 @@
       </feMerge>
     </filter>
 
-    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-      <animateTransform attributeName="patternTransform" type="translate" from="0 0" to="30 30" dur="4s" repeatCount="indefinite"/>
-      <path d="M 30 0 L 0 0 0 30" fill="none" class="grid-line" stroke="#1f2536" stroke-width="0.5"/>
+    <!-- Animated Grid -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <animateTransform attributeName="patternTransform" type="translate" from="0 0" to="40 40" dur="3s" repeatCount="indefinite"/>
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#4facfe" stroke-width="1"/>
     </pattern>
-    <pattern id="hex-grid" width="28" height="48.497" patternUnits="userSpaceOnUse">
-      <animateTransform attributeName="patternTransform" type="translate" from="0 0" to="0 48.497" dur="8s" repeatCount="indefinite"/>
-      <path d="M14 0 l14 8.083 v16.166 L14 32.331 L0 24.249 V8.083 L14 0 z" fill="none" stroke="#fff" stroke-opacity="0.02" stroke-width="1"/>
-    </pattern>
+    
+    <!-- Data Stream Line Mask -->
+    <clipPath id="stream-clip-right">
+      <rect x="0" y="-10" width="160" height="20" />
+    </clipPath>
+    <clipPath id="stream-clip-left">
+      <rect x="-160" y="-10" width="160" height="20" />
+    </clipPath>
   </defs>
 
-  <!-- Base Canvas -->
-  <rect width="1000" height="450" rx="16" fill="url(#bg)"/>
-  <rect width="1000" height="450" rx="16" fill="url(#grid)" opacity="0.4"/>
-  <rect width="1000" height="450" rx="16" fill="none" stroke="#1f2536" stroke-width="2"/>
-
-  <!-- Dynamic Header -->
-  <g transform="translate(500, 45)">
-    <circle cx="-160" cy="-5" r="4" fill="#00f2fe" filter="url(#glowCyan)">
-      <animate attributeName="opacity" values="0.3; 1; 0.3" dur="2s" repeatCount="indefinite"/>
-    </circle>
-    <text x="0" y="0" font-family="'Consolas', monospace" font-weight="900" font-size="20" fill="#ffffff" text-anchor="middle" letter-spacing="4" filter="url(#lightGlow)">
-      ENTERPRISE<tspan fill="url(#neonCyan)"> V3 ARCHITECTURE</tspan>
-    </text>
-    <circle cx="160" cy="-5" r="4" fill="#ff4b2b" filter="url(#glowOrange)">
-      <animate attributeName="opacity" values="1; 0.3; 1" dur="2s" repeatCount="indefinite"/>
-    </circle>
+  <!-- Background Layer -->
+  <rect width="1000" height="350" rx="16" fill="url(#bg)"/>
+  <rect width="1000" height="350" rx="16" fill="none" stroke="#1f2536" stroke-width="2"/>
+  
+  <g opacity="0.05">
+    <rect width="1000" height="350" rx="16" fill="url(#grid)"/>
   </g>
 
-  <!-- ========================================== -->
-  <!-- LEFT: Enterprise Environment (BYOT SDK)      -->
-  <!-- ========================================== -->
-  <g transform="translate(80, 110)">
-    <!-- Aura -->
-    <circle cx="120" cy="110" r="100" fill="url(#neonCyan)" opacity="0.03" filter="url(#glowCyan)">
-      <animate attributeName="r" values="90; 110; 90" dur="4s" repeatCount="indefinite"/>
+  <!-- Title -->
+  <text x="500" y="45" font-family="'Inter', Arial, sans-serif" font-weight="900" font-size="20" fill="#ffffff" letter-spacing="4" text-anchor="middle" filter="url(#lightGlow)">
+    V3 <tspan fill="url(#neonCyan)">ENTERPRISE</tspan> ARCHITECTURE
+  </text>
+  <line x1="400" y1="55" x2="600" y2="55" stroke="url(#neonCyan)" stroke-width="1.5" opacity="0.5" filter="url(#glow)"/>
+
+  <!-- ============================================== -->
+  <!-- CENTER: THE OPENJUDGE ENGINE CORE (The Ledger) -->
+  <!-- ============================================== -->
+  <g transform="translate(500, 200)">
+    
+    <!-- Background Radar Pulse -->
+    <circle cx="0" cy="0" r="100" fill="url(#neonOrange)" filter="url(#glow)" opacity="0.05">
+      <animate attributeName="opacity" values="0.02; 0.08; 0.02" dur="4s" repeatCount="indefinite" />
     </circle>
+
+    <!-- Outer Rotating Radar Ring -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="20s" repeatCount="indefinite" />
+      <circle cx="0" cy="0" r="110" fill="none" stroke="#1f2433" stroke-width="1"/>
+      <circle cx="0" cy="0" r="110" fill="none" stroke="url(#neonOrange)" stroke-width="2" stroke-dasharray="80 40 20 40" filter="url(#lightGlow)" opacity="0.8"/>
+    </g>
+
+    <!-- Inner Counter-Rotating Alignment Ring -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="12s" repeatCount="indefinite" />
+      <circle cx="0" cy="0" r="85" fill="none" stroke="url(#neonCyan)" stroke-width="1.5" stroke-dasharray="30 15 5 15" opacity="0.7"/>
+    </g>
+
+    <!-- The 3D Engine Core (Ledger of Truth) -->
+    <g>
+      <animateTransform attributeName="transform" type="scale" values="1; 1.05; 1" dur="2s" repeatCount="indefinite" />
+      <!-- Top Face -->
+      <polygon points="0,-45 38.97,-22.5 0,0 -38.97,-22.5" fill="#0d1b2a" stroke="url(#neonCyan)" stroke-width="1.5" filter="url(#lightGlow)"/>
+      <!-- Left Face -->
+      <polygon points="0,0 -38.97,-22.5 -38.97,22.5 0,45" fill="#050811" stroke="url(#neonCyan)" stroke-width="1.5"/>
+      <!-- Right Face -->
+      <polygon points="0,0 38.97,-22.5 38.97,22.5 0,45" fill="#0c070c" stroke="url(#neonOrange)" stroke-width="1.5"/>
+    </g>
+
+    <!-- Pulsing Inner Validation Dot -->
+    <circle cx="0" cy="0" r="6" fill="#ffffff" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="5; 7; 5" dur="2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Engine Labels -->
+    <text x="0" y="-125" font-family="'Consolas', monospace" font-weight="bold" font-size="14" fill="#ffffff" text-anchor="middle" filter="url(#lightGlow)">
+      OpenJudgeEngine
+    </text>
+    <rect x="-60" y="115" width="120" height="22" rx="4" fill="#0a0c14" stroke="url(#neonOrange)" stroke-width="1"/>
+    <text x="0" y="130" font-family="'Consolas', monospace" font-size="11" font-weight="bold" fill="#ff4b2b" text-anchor="middle" filter="url(#lightGlow)">
+      MATHEMATICAL VERIFY
+    </text>
+  </g>
+
+  <!-- ============================================== -->
+  <!-- LEFT: ENTERPRISE ENVIRONMENT (BYOT & SSE)      -->
+  <!-- ============================================== -->
+  <g transform="translate(180, 200)">
     
-    <!-- Glass Container -->
-    <rect width="240" height="220" rx="12" fill="url(#glassBox)" stroke="#1a2030" stroke-width="2"/>
-    <rect width="240" height="220" rx="12" fill="url(#hex-grid)"/>
+    <!-- Environment UI Container -->
+    <rect x="-100" y="-80" width="200" height="160" rx="8" fill="#0a0c14" stroke="#1f2433" stroke-width="2"/>
     
-    <text x="120" y="35" font-family="'Inter', Arial, sans-serif" font-weight="bold" font-size="16" fill="#00f2fe" text-anchor="middle" letter-spacing="1" filter="url(#lightGlow)">ENTERPRISE APP</text>
-    
-    <!-- Dynamic Tool Injection Node -->
-    <g transform="translate(40, 70)">
-      <rect width="160" height="36" rx="6" fill="#050811" stroke="url(#neonCyan)" stroke-width="1.5" filter="url(#glowCyan)" opacity="0.8"/>
-      <text x="80" y="22" font-family="'Consolas', monospace" font-size="12" fill="#ffffff" text-anchor="middle">.register_tool()</text>
-      <!-- Blinking Node -->
-      <circle cx="15" cy="18" r="4" fill="#00f2fe">
-        <animate attributeName="opacity" values="1; 0; 1" dur="1.2s" repeatCount="indefinite"/>
+    <!-- Header Tab -->
+    <path d="M -100 -80 L 100 -80 L 100 -55 L -100 -55 Z" fill="#1f2433" rx="8"/>
+    <circle cx="-80" cy="-67" r="4" fill="#ff4b2b"/>
+    <circle cx="-65" cy="-67" r="4" fill="#facc15"/>
+    <circle cx="-50" cy="-67" r="4" fill="#00ff88"/>
+    <text x="0" y="-64" font-family="'Consolas', monospace" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">Enterprise Backend</text>
+
+    <!-- 1. BYOT SDK Injection -->
+    <g transform="translate(0, -25)">
+      <rect x="-85" y="-15" width="170" height="28" rx="4" fill="rgba(0, 242, 254, 0.1)" stroke="url(#neonCyan)" stroke-width="1" filter="url(#lightGlow)"/>
+      <text x="0" y="3" font-family="'Consolas', monospace" font-size="11" fill="#4facfe" font-weight="bold" text-anchor="middle">.register_tool()</text>
+      <!-- Pulsing Node indicating injection -->
+      <circle cx="70" cy="-1" r="3" fill="#ffffff" filter="url(#glow)">
+        <animate attributeName="opacity" values="1; 0.2; 1" dur="1s" repeatCount="indefinite"/>
       </circle>
     </g>
 
-    <!-- Telemetry Receiver Node -->
-    <g transform="translate(40, 130)">
-      <rect width="160" height="46" rx="6" fill="#050811" stroke="#1f2433" stroke-width="1.5"/>
-      <rect x="0" y="0" width="4" height="46" rx="2" fill="#ff4b2b" filter="url(#glowOrange)">
-         <animate attributeName="height" values="0; 46; 0" dur="3s" repeatCount="indefinite"/>
-      </rect>
-      <text x="85" y="20" font-family="'Consolas', monospace" font-size="12" fill="#8892b0" text-anchor="middle">Observer UI Dashboard</text>
-      <text x="85" y="36" font-family="'Consolas', monospace" font-size="10" fill="#ff416c" text-anchor="middle">JSON SSE Stream</text>
+    <!-- 2. SSE Telemetry Dashboard -->
+    <g transform="translate(0, 25)">
+      <rect x="-85" y="-15" width="170" height="40" rx="4" fill="#05060a" stroke="#1f2433" stroke-width="1"/>
+      <text x="-75" y="0" font-family="'Consolas', monospace" font-size="9" fill="#8892b0">Observer UI Stream</text>
+      <text x="-75" y="15" font-family="'Consolas', monospace" font-size="10" fill="#00ff88" font-weight="bold">
+        yield <tspan fill="url(#neonCyan)">{"event": ...}</tspan>
+      </text>
     </g>
   </g>
 
-  <!-- ========================================== -->
-  <!-- CENTER: The Cognitive Engine (OpenJudge)   -->
-  <!-- ========================================== -->
-  <g transform="translate(380, 80)">
+  <!-- ============================================== -->
+  <!-- RIGHT: THE LLM INFERENCE GATEWAY               -->
+  <!-- ============================================== -->
+  <g transform="translate(820, 200)">
     
-    <!-- Deep Shield Halo -->
-    <circle cx="120" cy="140" r="130" fill="url(#neonOrange)" opacity="0.04" filter="url(#glowOrange)">
-      <animate attributeName="r" values="120; 140; 120" dur="6s" repeatCount="indefinite"/>
-    </circle>
+    <!-- LLM UI Container -->
+    <rect x="-100" y="-80" width="200" height="160" rx="8" fill="#0a0c14" stroke="#1f2433" stroke-width="2"/>
     
-    <!-- Engine Perimeter -->
-    <path d="M 20 140 L 40 40 L 200 40 L 220 140 L 200 240 L 40 240 Z" fill="url(#glassBox)" stroke="#1a2030" stroke-width="2"/>
-    <text x="120" y="30" font-family="'Inter', Arial, sans-serif" font-weight="900" font-size="18" fill="url(#neonOrange)" text-anchor="middle" letter-spacing="2" filter="url(#glowOrange)">OPENJUDGE ENGINE</text>
+    <!-- Header Tab -->
+    <path d="M -100 -80 L 100 -80 L 100 -55 L -100 -55 Z" fill="#1f2433" rx="8"/>
+    <text x="0" y="-64" font-family="'Consolas', monospace" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">LLM API Gateway</text>
 
-    <g transform="translate(120, 140)">
-      <!-- Outer Verification Radar -->
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="15s" repeatCount="indefinite"/>
-        <circle cx="0" cy="0" r="80" fill="none" stroke="url(#neonOrange)" stroke-width="1.5" stroke-dasharray="40 10 10 10" filter="url(#glowOrange)" opacity="0.8"/>
-      </g>
-      
-      <!-- Inner Validation Core -->
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="10s" repeatCount="indefinite"/>
-        <circle cx="0" cy="0" r="60" fill="none" stroke="url(#neonCyan)" stroke-width="2" stroke-dasharray="10 30" opacity="0.9" filter="url(#glowCyan)"/>
-      </g>
-      
-      <!-- Central Iso-Crystal -->
-      <g>
-        <animateTransform attributeName="transform" type="scale" values="1; 1.08; 1" dur="2s" repeatCount="indefinite"/>
-        <!-- Top Face -->
-        <polygon points="0,-25 21.65,-12.5 0,0 -21.65,-12.5" fill="#0d1b2a" stroke="#ffffff" stroke-width="1" filter="url(#lightGlow)"/>
-        <!-- Left Face -->
-        <polygon points="0,0 -21.65,-12.5 -21.65,12.5 0,25" fill="#050811" stroke="url(#neonCyan)" stroke-width="1"/>
-        <!-- Right Face -->
-        <polygon points="0,0 21.65,-12.5 21.65,12.5 0,25" fill="#0c070c" stroke="url(#neonOrange)" stroke-width="1"/>
-      </g>
-
-      <!-- Scanning Algorithm Matrix -->
-      <g>
-        <animateTransform attributeName="transform" type="translate" values="0,-45; 0,45; 0,-45" dur="3s" repeatCount="indefinite"/>
-        <line x1="-50" y1="0" x2="50" y2="0" stroke="#ff0080" stroke-width="2" filter="url(#glowOrange)">
-           <animate attributeName="opacity" values="0; 0.9; 0; 0.9; 0" keyTimes="0; 0.25; 0.5; 0.75; 1" dur="3s" repeatCount="indefinite"/>
-        </line>
-      </g>
-
-      <text x="0" y="105" font-family="'Consolas', monospace" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle" filter="url(#lightGlow)">Verification Math</text>
-    </g>
-  </g>
-
-  <!-- ========================================== -->
-  <!-- RIGHT: FastAPI & LLM Neural Cluster        -->
-  <!-- ========================================== -->
-  <g transform="translate(680, 110)">
-    <!-- Aura -->
-    <circle cx="120" cy="110" r="100" fill="url(#neonGreen)" opacity="0.03" filter="url(#glowGreen)">
-      <animate attributeName="r" values="90; 110; 90" dur="4s" repeatCount="indefinite"/>
-    </circle>
-    
-    <rect width="240" height="220" rx="12" fill="url(#glassBox)" stroke="#1a2030" stroke-width="2"/>
-    
-    <!-- Microservice Port -->
-    <g transform="translate(120, 0)">
-       <path d="M -40 0 L 40 0 L 30 20 L -30 20 Z" fill="#050811" stroke="url(#neonGreen)" stroke-width="1.5" filter="url(#glowGreen)"/>
-       <text x="0" y="14" font-family="'Consolas', monospace" font-size="12" fill="#00ff88" font-weight="bold" text-anchor="middle" letter-spacing="1">FastAPI</text>
-    </g>
-
-    <text x="120" y="55" font-family="'Inter', Arial, sans-serif" font-weight="bold" font-size="16" fill="#00ff88" text-anchor="middle" letter-spacing="1" filter="url(#lightGlow)">LLM INFERENCE</text>
-    
-    <!-- Connected Neural Nodes -->
-    <g transform="translate(120, 130)">
-      <path d="M 0 0 L -60 -30 M 0 0 L 60 -30 M 0 0 L -40 50 M 0 0 L 40 50" stroke="#1f2433" stroke-width="2"/>
+    <!-- Neural Nodes -->
+    <g transform="translate(0, 10)">
+      <path d="M 0 0 L -40 -30 M 0 0 L 40 -30 M 0 0 L -30 40 M 0 0 L 30 40" stroke="#1f2433" stroke-width="2"/>
       <!-- Pulsing Data transferring into nodes -->
-      <circle cx="0" cy="0" r="3" fill="#00ff88" filter="url(#glowGreen)">
-         <animateTransform attributeName="transform" type="translate" values="0,0; -60,-30" dur="1s" repeatCount="indefinite"/>
+      <circle cx="0" cy="0" r="2.5" fill="url(#neonGreen)" filter="url(#glow)">
+         <animateTransform attributeName="transform" type="translate" values="0,0; -40,-30" dur="1s" repeatCount="indefinite"/>
          <animate attributeName="opacity" values="1; 0" dur="1s" repeatCount="indefinite"/>
       </circle>
-      <circle cx="0" cy="0" r="3" fill="#00ff88" filter="url(#glowGreen)">
-         <animateTransform attributeName="transform" type="translate" values="0,0; 60,-30" dur="1.2s" repeatCount="indefinite"/>
+      <circle cx="0" cy="0" r="2.5" fill="url(#neonGreen)" filter="url(#glow)">
+         <animateTransform attributeName="transform" type="translate" values="0,0; 40,-30" dur="1.2s" repeatCount="indefinite"/>
          <animate attributeName="opacity" values="1; 0" dur="1.2s" repeatCount="indefinite"/>
       </circle>
+
+      <circle cx="-40" cy="-30" r="12" fill="#050811" stroke="url(#neonGreen)" stroke-width="1.5"/>
+      <circle cx="40" cy="-30" r="12" fill="#050811" stroke="#00ff88" stroke-width="1.5"/>
+      <circle cx="-30" cy="40" r="12" fill="#050811" stroke="url(#neonGreen)" stroke-width="1.5"/>
+      <circle cx="30" cy="40" r="12" fill="#050811" stroke="#00ff88" stroke-width="1.5"/>
       
-      <circle cx="-60" cy="-30" r="15" fill="#050811" stroke="url(#neonGreen)" stroke-width="1.5"/>
-      <circle cx="60" cy="-30" r="15" fill="#050811" stroke="#00df6d" stroke-width="1.5"/>
-      <circle cx="-40" cy="50" r="15" fill="#050811" stroke="url(#neonGreen)" stroke-width="1.5"/>
-      <circle cx="40" cy="50" r="15" fill="#050811" stroke="#00df6d" stroke-width="1.5"/>
-      
-      <circle cx="0" cy="0" r="25" fill="#0B0E14" stroke="#ffffff" stroke-width="2" filter="url(#glowGreen)"/>
-      <text x="0" y="4" font-family="'Consolas', monospace" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">GPT</text>
+      <!-- Center GPT Node -->
+      <circle cx="0" cy="0" r="22" fill="#0d1b2a" stroke="url(#neonCyan)" stroke-width="2" filter="url(#glow)"/>
+      <text x="0" y="4" font-family="'Consolas', monospace" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">GPT-4</text>
     </g>
   </g>
 
-  <!-- ========================================== -->
-  <!-- DATA PIPELINES (ANIMATED ARROWS)             -->
-  <!-- ========================================== -->
+  <!-- ============================================== -->
+  <!-- DYNAMIC DATA PIPELINES (THE SYNAPSE LINKS)     -->
+  <!-- ============================================== -->
   
-  <!-- App -> Engine (BYOT Tools) -->
-  <g transform="translate(320, 180)">
-    <path d="M 0 0 L 80 0" fill="none" stroke="#00f2fe" stroke-width="2" stroke-dasharray="4,6"/>
-    <!-- Animated Light Beam -->
-    <path d="M 0 0 L 30 0" fill="none" class="data-beam" stroke="#00f2fe" stroke-width="3" filter="url(#glowCyan)">
-      <animateTransform attributeName="transform" type="translate" values="-30,0; 80,0" dur="1.5s" repeatCount="indefinite"/>
+  <!-- PIPELINE 1: Top Left (Injecting BYOT into Engine) -->
+  <g transform="translate(280, 160)">
+    <path d="M 0 0 L 120 0" fill="none" stroke="#1f2433" stroke-width="2"/>
+    <path d="M 0 0 L 120 0" fill="none" class="data-beam" stroke="url(#neonCyan)" stroke-width="2" stroke-dasharray="8 6">
+      <animate attributeName="stroke-dashoffset" values="14; 0" dur="0.8s" repeatCount="indefinite" />
     </path>
-  </g>
-  
-  <!-- Engine -> App (SSE Telemetry Stream) -->
-  <g transform="translate(320, 240)">
-    <path d="M 80 0 L 0 0" fill="none" stroke="#ff416c" stroke-width="2" stroke-dasharray="4,6"/>
-    <path d="M 0 0 L 30 0" fill="none" class="data-beam" stroke="#ff416c" stroke-width="3" filter="url(#glowOrange)">
-      <animateTransform attributeName="transform" type="translate" values="50,0; -30,0" dur="1s" repeatCount="indefinite"/>
-    </path>
-    <!-- Packet JSON UI floating element -->
-    <rect x="25" y="-12" width="30" height="24" rx="4" fill="#0B0E14" stroke="#ff416c" stroke-width="1">
-       <animateTransform attributeName="transform" type="translate" values="50,0; -30,0" dur="1s" repeatCount="indefinite"/>
-    </rect>
-    <text x="40" y="3" font-family="'Consolas', monospace" font-size="9" fill="#ffffff" text-anchor="middle">
-      <animateTransform attributeName="transform" type="translate" values="50,0; -30,0" dur="1s" repeatCount="indefinite"/>
-      {..}
-    </text>
+    <text x="60" y="-8" font-family="'Consolas', monospace" font-size="10" fill="#4facfe" text-anchor="middle">Dyn XML Inject</text>
   </g>
 
-  <!-- Engine <-> LLM Gateway (Prompt Injection & Inference) -->
-  <g transform="translate(600, 210)">
-    <path d="M 0 -15 L 80 -15" fill="none" stroke="#00ff88" stroke-width="2" stroke-dasharray="4,6">
-      <animateTransform attributeName="transform" type="translate" values="0,0" dur="1s" />
-    </path>
-    <!-- Outbound Prompt -->
-    <path d="M 0 -15 L 30 -15" fill="none" stroke="#00ff88" stroke-width="3" filter="url(#glowGreen)">
-      <animateTransform attributeName="transform" type="translate" values="-30,0; 80,0" dur="1.2s" repeatCount="indefinite"/>
-    </path>
-    
-    <path d="M 80 15 L 0 15" fill="none" stroke="url(#neonOrange)" stroke-width="2" stroke-dasharray="4,6"/>
-    <!-- Inbound Response XML -->
-    <path d="M 0 15 L 30 15" fill="none" stroke="#ff4b2b" stroke-width="3" filter="url(#glowOrange)">
-      <animateTransform attributeName="transform" type="translate" values="50,0; -30,0" dur="1.2s" repeatCount="indefinite"/>
-    </path>
+  <!-- PIPELINE 2: Bottom Left (Engine Streaming SSE JSON to Dashboard) -->
+  <g transform="translate(280, 240)">
+    <path d="M 120 0 L 0 0" fill="none" stroke="#1f2433" stroke-width="2"/>
+    <!-- Animated Light Beam traveling right to left -->
+    <g clip-path="url(#stream-clip-left)">
+      <path d="M 120 0 L 80 0" fill="none" stroke="url(#neonOrange)" stroke-width="3" filter="url(#glow)">
+        <animateTransform attributeName="transform" type="translate" values="40,0; -240,0" dur="1.5s" repeatCount="indefinite"/>
+      </path>
+    </g>
+    <text x="60" y="-8" font-family="'Consolas', monospace" font-size="10" fill="#ff4b2b" text-anchor="middle">SSE Telemetry</text>
   </g>
 
-  <!-- ========================================== -->
-  <!-- COMMAND CENTER (Bottom Log Window)         -->
-  <!-- ========================================== -->
-  <g transform="translate(180, 370)">
-    <!-- Terminal Bar -->
-    <rect width="640" height="20" rx="3" fill="#050811" stroke="#1f2433" stroke-width="1"/>
-    <!-- Fake Window Buttons -->
-    <circle cx="15" cy="10" r="4" fill="#ff4b2b"/>
-    <circle cx="30" cy="10" r="4" fill="#facc15"/>
-    <circle cx="45" cy="10" r="4" fill="#00ff88"/>
+  <!-- PIPELINE 3: Top Right (Engine Sending State to LLM) -->
+  <g transform="translate(600, 160)">
+    <path d="M 0 0 L 120 0" fill="none" stroke="#1f2433" stroke-width="2"/>
+    <path d="M 0 0 L 120 0" fill="none" stroke="#00ff88" stroke-width="2" stroke-dasharray="8 6">
+      <animate attributeName="stroke-dashoffset" values="14; 0" dur="0.8s" repeatCount="indefinite" />
+    </path>
+    <text x="60" y="-8" font-family="'Consolas', monospace" font-size="10" fill="#00ff88" text-anchor="middle">Prompt Context</text>
+  </g>
 
-    <!-- Dynamic Stream Reading -->
-    <text x="15" y="45" font-family="'Consolas', monospace" font-size="13" fill="#8892b0">
-      <tspan fill="#ff416c" filter="url(#lightGlow)">GET</tspan> /api/v1/judge/execute 
-      <tspan fill="#00f2fe">➜ Connected to SSE Stream.</tspan>
-    </text>
-
-    <!-- Typing Effect Text -->
-    <text x="15" y="70" font-family="'Consolas', monospace" font-size="13" fill="#8892b0">
-      yield JSON <tspan fill="url(#neonCyan)">{"event": "TOOL_VALIDATED", "output": </tspan>
-      <tspan fill="#00ff88" font-weight="bold" filter="url(#lightGlow)">"[ENFORCE: PASS]"</tspan>
-      <tspan fill="url(#neonCyan)">}</tspan>
-    </text>
-    
-    <rect x="420" y="58" width="6" height="14" fill="#ffffff" filter="url(#lightGlow)">
-      <animate attributeName="opacity" values="1; 0; 1" dur="1s" repeatCount="indefinite"/>
-    </rect>
+  <!-- PIPELINE 4: Bottom Right (LLM Halucinating Output to Engine) -->
+  <g transform="translate(600, 240)">
+    <path d="M 120 0 L 0 0" fill="none" stroke="#1f2433" stroke-width="2"/>
+    <path d="M 120 0 L 0 0" fill="none" stroke="#ff0080" stroke-width="2" stroke-dasharray="8 6">
+      <animate attributeName="stroke-dashoffset" values="0; 14" dur="0.8s" repeatCount="indefinite" />
+    </path>
+    <circle cx="120" cy="0" r="3" fill="#ffffff" filter="url(#glow)">
+      <animate attributeName="cx" values="120; 0" dur="1.2s" repeatCount="indefinite" />
+    </circle>
+    <text x="60" y="-8" font-family="'Consolas', monospace" font-size="10" fill="#8892b0" text-anchor="middle">XML Response</text>
   </g>
 
 </svg>
