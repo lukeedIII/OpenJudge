@@ -1,0 +1,22 @@
+{
+    "name": "openjudge",
+    "version": "1.0.0",
+    "description": "Empirical verification-and-enforcement loop for autonomous systems.",
+    "main": "bin/openjudge.js",
+    "bin": {
+        "openjudge": "./bin/openjudge.js"
+    },
+    "scripts": {
+        "test": "python test_suite.py"
+    },
+    "keywords": [
+        "ai",
+        "verification",
+        "llm",
+        "agent",
+        "openjudge"
+    ],
+    "author": "LukeedIII",
+    "license": "AGPL-3.0",
+    "dependencies": {}
+}
