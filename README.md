@@ -81,30 +81,32 @@ By default, OpenJudge operates using its own internal `tools.py` substrate. Howe
 
 ### Architectural Flow Comparison
 
+**1. Standard OpenClaw (Without Judge)**
 ```mermaid
 graph TD
-    subgraph "Standard OpenClaw (Without Judge)"
-        A1[User Request via Slack/WhatsApp] --> B1[OpenClaw Gateway]
-        B1 --> C1[LLM Agent]
-        C1 -->|Hallucinates Success| D1[Generates Code/Action]
-        D1 --> E1[User assumes it works]
-    end
+    A1[User Request via Slack/WhatsApp] --> B1[OpenClaw Gateway]
+    B1 --> C1[LLM Agent]
+    C1 -->|Hallucinates Success| D1[Generates Code/Action]
+    D1 --> E1[User assumes it works]
+    
+    style C1 fill:#2d334a,stroke:#8892b0,stroke-width:1px
+```
 
-    subgraph "OpenClaw + OpenJudge (Enforced Synergy)"
-        A2[User Request via Slack/WhatsApp] --> B2[OpenClaw Gateway]
-        B2 --> C2[OpenJudge Cognitive Loop]
-        C2 --> D2[LLM Agent Proposes Action]
-        D2 --> E2{Physical Execution via OpenClaw Nodes}
-        E2 -->|Fail| F2[Strict State Correction]
-        F2 --> C2
-        E2 -->|Pass| G2[Empirical Verdict]
-        G2 --> H2[Verified Delivery to User]
-    end
+**2. OpenClaw + OpenJudge (Enforced Synergy)**
+```mermaid
+graph TD
+    A2[User Request via Slack/WhatsApp] --> B2[OpenClaw Gateway]
+    B2 --> C2[OpenJudge Cognitive Loop]
+    C2 --> D2[LLM Agent Proposes Action]
+    D2 --> E2{Physical Execution via OpenClaw Nodes}
+    E2 -->|Fail| F2[Strict State Correction]
+    F2 --> C2
+    E2 -->|Pass| G2[Empirical Verdict]
+    G2 --> H2[Verified Delivery to User]
     
     style C2 fill:#003050,stroke:#00f0ff,stroke-width:2px
     style E2 fill:#331515,stroke:#ff4b2b,stroke-width:2px
     style G2 fill:#103c20,stroke:#2ea043,stroke-width:2px
-    style C1 fill:#2d334a,stroke:#8892b0,stroke-width:1px
 ```
 
 **Implementation Example (Conceptual RPC Bridge):**
