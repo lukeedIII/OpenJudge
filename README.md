@@ -66,3 +66,35 @@ The runtime exposes a continuous telemetry stream via the `rich` library:
 * **Yellow**: Real-time physical tool execution sequences.
 * **Red**: Structural healing overrides, subsystem failures, or `[ENFORCE: PIVOT]` routines.
 * **Green**: Successful validations and the final `[ENFORCE: TERMINATE]` halting operation.
+
+---
+
+## Ecosystem Integration: OpenClaw
+
+OpenJudge is designed to be the uncompromising **Cognitive Enforcer**, while platforms like [OpenClaw](https://github.com/openclaw/openclaw) function as the **Physical Hands and Sensory Network**. 
+
+By default, OpenJudge operates using its own internal `tools.py` substrate. However, logically and syntactically, OpenJudge can "sit on top" of the OpenClaw Gateway architecture.
+
+**The Synergy:**
+1. **The Hand (OpenClaw):** Handles WebSocket multi-channel ingestion (Slack, Discord, WhatsApp), device-native cross-platform commands (`system.run`), Chrome CDP browser manipulation, and iOS/Android nodes.
+2. **The Brain/Judge (OpenJudge):** Receives the context from OpenClaw, orchestrates the physical commands back through the OpenClaw RPC interface, and ruthlessly enforces state verification before confirming completion.
+
+**Implementation Example (Conceptual RPC Bridge):**
+To adapt OpenJudge to run over OpenClaw, you simply redirect the Execution Tools (`tools.py`) to hit the OpenClaw WebSocket Gateway instead of the local OS kernel:
+
+```python
+# Instead of local subprocess in OpenJudge's tools.py:
+def execute_bash(command: str) -> str:
+    # return subprocess.run(command, ...)
+
+# Route it through the OpenClaw Gateway RPC:
+async def execute_bash(command: str) -> str:
+    response = await openclaw_rpc.invoke("node.invoke", {
+        "action": "system.run",
+        "payload": {"command": command}
+    })
+    return response.stdout
+```
+
+In this architecture, OpenJudge becomes the master verification loop, driving OpenClaw's extensive toolset to empirically prove code, DOM state, and system operations across your entire device fleet.
+
