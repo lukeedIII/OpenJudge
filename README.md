@@ -93,6 +93,49 @@ python compare_demo.py
 
 ---
 
+## V3 Enterprise Architecture
+
+OpenJudge is no longer just a CLI tool. It is a fully object-oriented SDK and web-streaming engine designed for enterprise integration.
+
+<div align="center">
+  <img src="assets/v3_architecture.svg" alt="V3 Architecture Flow" width="100%">
+</div>
+
+### 1. The BYOT SDK (Bring Your Own Tools)
+You can instantiate `OpenJudgeEngine` directly in your Python backends. The prompt architecture dynamically injects your custom tools (`engine.register_tool`) directly into the LLM's XML registry.
+
+```python
+from engine import OpenJudgeEngine
+
+engine = OpenJudgeEngine(max_iterations=10)
+
+# Inject your company's proprietary tool into the cognitive loop
+engine.register_tool(
+    name="query_secure_database", 
+    description="Payload: sql_query. Use: Reads secure internal employee records.",
+    func=my_custom_db_function
+)
+```
+
+### 2. Event-Driven Telemetry (Observer UI Ready)
+OpenJudge does not use static `return` statements or blocking console prints. It exposes an `AsyncGenerator` that streams `yield` packets of structured JSON. This allows React/Vue developers to hook into the stream and render real-time, ChatGPT-style interactive visualization dashboards.
+
+```python
+# The engine organically yields JSON events (THOUGHT_PROCESS, TOOL_RESULT)
+async for event_json in engine.stream_execute("Query HR for ID 4242"):
+    print(event_json) 
+```
+
+### 3. The FastAPI Microservice
+OpenJudge officially ships with a high-performance **FastAPI** wrapper (`api.py`), allowing any system on your network to command the engine over HTTP and consume the JSON telemetry via **Server-Sent Events (SSE)**.
+
+```bash
+# Boot the Microservice
+uvicorn api:app --host 0.0.0.0 --port 8000
+```
+
+---
+
 ## 360° Empirical Benchmark Suite
 
 To definitively prove the superiority of an enforced execution cycle over standard conversational APIs, we maintain a strict suite of complex tasks designed to break standard LLMs.
