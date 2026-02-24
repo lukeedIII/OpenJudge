@@ -2,9 +2,9 @@
   <img src="assets/logo.svg" alt="OpenJudge Banner" width="100%">
   
   <br/>
-  
-  **The ultimate verification-and-enforcement runtime for autonomous AI systems.**  
-  *OpenJudge assumes all AI claims are false until empirically proven by physical execution.*
+
+  **Because LLMs lie. OpenJudge executes.**  
+  *An empirical verification-and-enforcement loop that stops AI hallucinations dead in their tracks.*
 
   <br/>
 
@@ -20,10 +20,10 @@
 
 ## ⚡ The Core Problem It Solves
 
-Standard AI Agents (Generators/Actors) suffer from **"Blind Confidence"**. They loop endlessly, hallucinate successful code implementations, claim UI elements look perfect when they are broken, and fall into context amnesia. They believe their own text output is reality.
+Standard AI Agents suffer from **"Blind Confidence"**. They loop endlessly, hallucinate successful code implementations, and confidently claim their broken scripts run flawlessly. They believe their own text output is reality.
 
-**OpenJudge is a supervisory architecture that sits ABOVE the generator.** 
-It operates on one ruthless principle: **Evidence over Belief.** It strips the LLM of its assumptions and forces it to interact with physical tools to verify its work against explicit criteria. If an AI claims "the bash script works," OpenJudge executes it. If it fails, the execution error is fed back to the AI as a strict state correction, forcing an immediate pivot or purge.
+**OpenJudge is a supervisory enforcer that sits ABOVE the generator.** 
+It operates on one ruthless principle: **Trust Nothing. Execute Everything.** It strips the LLM of its assumptions and forces it to interact with physical tools. If an AI claims "the bash script works," OpenJudge executes it. If it fails, the error is fed back to the AI as a strict state correction, forcing an immediate pivot or purge.
 
 ## 🧠 The Architecture
 

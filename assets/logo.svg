@@ -1,170 +1,93 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 280" width="900" height="280">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" width="100%" height="100%">
   <defs>
-    <!-- Background gradient -->
+    <!-- Dark deep space background -->
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#080b16"/>
-      <stop offset="50%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#060a12"/>
+      <stop offset="0%" stop-color="#090a0f"/>
+      <stop offset="50%" stop-color="#11131c"/>
+      <stop offset="100%" stop-color="#05060a"/>
     </linearGradient>
 
-    <!-- Primary accent gradient (Cyan → Electric Blue) -->
-    <linearGradient id="accent" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00d4ff"/>
-      <stop offset="50%" stop-color="#00f0ff"/>
-      <stop offset="100%" stop-color="#7df9ff"/>
+    <!-- Neon orange/red accent for the gavel representing execution/power -->
+    <linearGradient id="neonOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff4b2b"/>
+      <stop offset="100%" stop-color="#ff416c"/>
     </linearGradient>
 
-    <!-- Secondary warm accent for the verdict glow -->
-    <linearGradient id="warm" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00f0ff"/>
-      <stop offset="100%" stop-color="#0080ff"/>
+    <linearGradient id="neonCyan" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="100%" stop-color="#4facfe"/>
     </linearGradient>
 
-    <!-- Outer glow -->
     <filter id="glow">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
     </filter>
 
-    <!-- Softer glow for decorative elements -->
-    <filter id="softGlow">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <filter id="lightGlow">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
     </filter>
-
-    <!-- Intense inner glow for the eye -->
-    <filter id="eyeGlow">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-
-    <!-- Radial gradient for the "all-seeing eye" center -->
-    <radialGradient id="eyeCenter" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#7df9ff"/>
-      <stop offset="40%" stop-color="#00d4ff"/>
-      <stop offset="100%" stop-color="#003050" stop-opacity="0"/>
-    </radialGradient>
-
-    <!-- Ambient particle glow -->
-    <radialGradient id="particle" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#00f0ff" stop-opacity="0"/>
-    </radialGradient>
-
-    <!-- Border gradient for the card -->
-    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.4"/>
-      <stop offset="50%" stop-color="#00d4ff" stop-opacity="0.1"/>
-      <stop offset="100%" stop-color="#0080ff" stop-opacity="0.3"/>
-    </linearGradient>
   </defs>
 
-  <!-- ==================== BACKGROUND ==================== -->
-  <rect width="900" height="280" rx="16" fill="url(#bg)"/>
-  <rect width="900" height="280" rx="16" fill="none" stroke="url(#borderGrad)" stroke-width="1.5"/>
+  <rect width="1000" height="300" rx="16" fill="url(#bg)"/>
 
-  <!-- Subtle grid pattern -->
-  <g opacity="0.04">
-    <line x1="0" y1="70" x2="900" y2="70" stroke="#00f0ff" stroke-width="0.5"/>
-    <line x1="0" y1="140" x2="900" y2="140" stroke="#00f0ff" stroke-width="0.5"/>
-    <line x1="0" y1="210" x2="900" y2="210" stroke="#00f0ff" stroke-width="0.5"/>
-    <line x1="225" y1="0" x2="225" y2="280" stroke="#00f0ff" stroke-width="0.5"/>
-    <line x1="450" y1="0" x2="450" y2="280" stroke="#00f0ff" stroke-width="0.5"/>
-    <line x1="675" y1="0" x2="675" y2="280" stroke="#00f0ff" stroke-width="0.5"/>
+  <!-- Subtle grid -->
+  <g opacity="0.05">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#4facfe" stroke-width="1"/>
+    </pattern>
+    <rect width="1000" height="300" fill="url(#grid)" rx="16"/>
   </g>
 
-  <!-- Ambient floating particles -->
-  <circle cx="120" cy="45" r="2" fill="url(#particle)"/>
-  <circle cx="750" cy="60" r="1.5" fill="url(#particle)"/>
-  <circle cx="820" cy="230" r="1" fill="url(#particle)"/>
-  <circle cx="380" cy="25" r="1" fill="url(#particle)"/>
-  <circle cx="650" cy="250" r="1.5" fill="url(#particle)"/>
+  <!-- Left Side: Cyber Gavel & Shockwave -->
+  <g transform="translate(180, 150)">
+    
+    <!-- Shockwave Rings -->
+    <ellipse cx="0" cy="50" rx="90" ry="25" fill="none" stroke="url(#neonCyan)" stroke-width="2" filter="url(#glow)" opacity="0.4"/>
+    <ellipse cx="0" cy="50" rx="140" ry="40" fill="none" stroke="url(#neonCyan)" stroke-width="1" filter="url(#lightGlow)" opacity="0.2"/>
+    <ellipse cx="0" cy="50" rx="40" ry="10" fill="url(#neonCyan)" filter="url(#glow)" opacity="0.3"/>
 
-  <!-- ==================== ICON: SCALES OF JUSTICE ==================== -->
-  <g transform="translate(115, 140)">
-
-    <!-- Outer orbit rings -->
-    <ellipse cx="0" cy="0" rx="105" ry="105" stroke="url(#accent)" stroke-width="0.6" fill="none" opacity="0.15" stroke-dasharray="3 9"/>
-    <ellipse cx="0" cy="0" rx="88" ry="88" stroke="url(#accent)" stroke-width="0.4" fill="none" opacity="0.1" stroke-dasharray="2 12"/>
-
-    <!-- Hexagonal frame behind the scales -->
-    <polygon points="0,-80 69,-40 69,40 0,80 -69,40 -69,-40" stroke="url(#accent)" stroke-width="0.8" fill="none" opacity="0.12"/>
-
-    <!-- Central "All-Seeing Eye" -->
-    <circle cx="0" cy="0" r="14" fill="url(#eyeCenter)" filter="url(#eyeGlow)"/>
-    <circle cx="0" cy="0" r="6" fill="#0d1117" stroke="url(#accent)" stroke-width="1.5"/>
-    <circle cx="0" cy="0" r="2.5" fill="#7df9ff"/>
-
-    <!-- Central Pillar -->
-    <line x1="0" y1="-14" x2="0" y2="-38" stroke="url(#accent)" stroke-width="3" stroke-linecap="round" filter="url(#glow)"/>
-
-    <!-- Base Platform -->
-    <path d="M -22 62 L 22 62 L 16 70 L -16 70 Z" fill="url(#accent)" opacity="0.7"/>
-    <line x1="0" y1="14" x2="0" y2="62" stroke="url(#accent)" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
-
-    <!-- Crossbeam -->
-    <line x1="-60" y1="-38" x2="60" y2="-38" stroke="url(#accent)" stroke-width="2.5" stroke-linecap="round" filter="url(#glow)"/>
-
-    <!-- Left Scale: PASS side -->
-    <line x1="-60" y1="-38" x2="-78" y2="10" stroke="url(#accent)" stroke-width="1.2"/>
-    <line x1="-60" y1="-38" x2="-42" y2="10" stroke="url(#accent)" stroke-width="1.2"/>
-    <!-- Pan (curved) -->
-    <path d="M -82 10 Q -60 28 -38 10" stroke="url(#accent)" stroke-width="1.8" fill="url(#accent)" fill-opacity="0.1" filter="url(#glow)"/>
-    <!-- PASS label -->
-    <text x="-60" y="38" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="9" fill="#00f0ff" opacity="0.6" font-weight="bold">PASS</text>
-
-    <!-- Right Scale: FAIL side -->
-    <line x1="60" y1="-38" x2="42" y2="10" stroke="url(#accent)" stroke-width="1.2"/>
-    <line x1="60" y1="-38" x2="78" y2="10" stroke="url(#accent)" stroke-width="1.2"/>
-    <!-- Pan (curved) -->
-    <path d="M 38 10 Q 60 28 82 10" stroke="url(#accent)" stroke-width="1.8" fill="url(#accent)" fill-opacity="0.1" filter="url(#glow)"/>
-    <!-- FAIL label -->
-    <text x="60" y="38" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="9" fill="#00f0ff" opacity="0.6" font-weight="bold">FAIL</text>
-
-    <!-- Tick marks on the crossbeam -->
-    <line x1="-30" y1="-42" x2="-30" y2="-34" stroke="url(#accent)" stroke-width="0.8" opacity="0.4"/>
-    <line x1="30" y1="-42" x2="30" y2="-34" stroke="url(#accent)" stroke-width="0.8" opacity="0.4"/>
-    <line x1="0" y1="-42" x2="0" y2="-38" stroke="url(#accent)" stroke-width="1" opacity="0.5"/>
-  </g>
-
-  <!-- ==================== TYPOGRAPHY ==================== -->
-  <g transform="translate(280, 105)">
-    <!-- Main title -->
-    <text font-family="'Segoe UI','Inter','Helvetica Neue',Arial,sans-serif" font-weight="800" font-size="62" letter-spacing="3" fill="#e6f1ff">
-      OPEN<tspan fill="url(#accent)">JUDGE</tspan>
-    </text>
-
-    <!-- Tagline -->
-    <text y="38" font-family="'Segoe UI','Inter','Helvetica Neue',Arial,sans-serif" font-weight="300" font-size="14.5" fill="#8b949e" letter-spacing="5">
-      AUTONOMOUS VERIFICATION ENGINE
-    </text>
-
-    <!-- Decorative separator line -->
-    <line x1="0" y1="52" x2="340" y2="52" stroke="url(#accent)" stroke-width="0.8" opacity="0.25"/>
-
-    <!-- Descriptor tags -->
-    <g transform="translate(0, 72)">
-      <!-- Tag: Evidence -->
-      <rect x="0" y="0" width="120" height="24" rx="4" fill="#00f0ff" fill-opacity="0.08" stroke="#00f0ff" stroke-width="0.7" stroke-opacity="0.3"/>
-      <text x="60" y="16" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="10" fill="#00d4ff" font-weight="600">⚡ EVIDENCE</text>
-
-      <!-- Tag: Criteria -->
-      <rect x="132" y="0" width="110" height="24" rx="4" fill="#00f0ff" fill-opacity="0.08" stroke="#00f0ff" stroke-width="0.7" stroke-opacity="0.3"/>
-      <text x="187" y="16" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="10" fill="#00d4ff" font-weight="600">◎ CRITERIA</text>
-
-      <!-- Tag: Enforce -->
-      <rect x="254" y="0" width="108" height="24" rx="4" fill="#00f0ff" fill-opacity="0.08" stroke="#00f0ff" stroke-width="0.7" stroke-opacity="0.3"/>
-      <text x="308" y="16" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="10" fill="#00d4ff" font-weight="600">⊘ ENFORCE</text>
+    <!-- Gavel Head -->
+    <g transform="rotate(-15) translate(-10, -40)">
+      <!-- Barrel -->
+      <path d="M -40 -15 L 40 -15 L 35 15 L -35 15 Z" fill="#1a1d2e" stroke="url(#neonCyan)" stroke-width="3" filter="url(#lightGlow)"/>
+      <rect x="-45" y="-18" width="10" height="36" rx="2" fill="url(#neonOrange)" filter="url(#glow)"/>
+      <rect x="35" y="-18" width="10" height="36" rx="2" fill="url(#neonOrange)" filter="url(#glow)"/>
+      
+      <!-- Core Line -->
+      <line x1="-35" y1="0" x2="35" y2="0" stroke="url(#neonCyan)" stroke-width="1.5" opacity="0.5"/>
     </g>
+
+    <!-- Gavel Handle -->
+    <path d="M -20 -30 L -60 -100 L -50 -105 L -10 -35 Z" fill="#2d334a" stroke="url(#neonCyan)" stroke-width="1.5"/>
+    <path d="M -52 -108 L -68 -95 L -62 -85 L -45 -98 Z" fill="url(#neonCyan)" filter="url(#glow)"/>
+    
+    <!-- Particle Sparks -->
+    <circle cx="20" cy="30" r="3" fill="url(#neonOrange)" filter="url(#glow)"/>
+    <circle cx="-30" cy="65" r="2" fill="url(#neonCyan)" filter="url(#glow)"/>
+    <circle cx="50" cy="45" r="2.5" fill="#fff" filter="url(#lightGlow)"/>
+    <circle cx="-5" cy="20" r="4" fill="url(#neonOrange)" filter="url(#glow)"/>
   </g>
 
-  <!-- Code snippet decoration (bottom-left) -->
-  <text x="30" y="268" font-family="'Consolas','Courier New',monospace" font-size="9.5" fill="#3a4a5a" opacity="0.6">
-    &gt; verdict: PASS | criteria: C1..Cn | action: TERMINATE
-  </text>
+  <!-- Right Side: Typography -->
+  <g transform="translate(380, 160)">
+    <text x="0" y="0" font-family="'Inter', -apple-system, sans-serif" font-weight="900" font-size="76" fill="#ffffff" letter-spacing="2">
+      OPEN<tspan fill="url(#neonCyan)">JUDGE</tspan>
+    </text>
+    <text x="5" y="45" font-family="'Consolas', monospace" font-weight="bold" font-size="18" fill="#ff4b2b" letter-spacing="1">
+      &gt;_ TRUST NOTHING. EXECUTE EVERYTHING.
+    </text>
+    
+    <!-- Code Bracket Decoration -->
+    <text x="0" y="-60" font-family="monospace" font-size="12" fill="#8892b0" opacity="0.7">
+      sys.run("truth_extraction.sh") | status: ENFORCE
+    </text>
+  </g>
 
-  <!-- Version tag (bottom-right) -->
-  <text x="810" y="268" text-anchor="end" font-family="'Consolas','Courier New',monospace" font-size="9" fill="#3a4a5a" opacity="0.5">
-    v1.0.0
-  </text>
 </svg>
