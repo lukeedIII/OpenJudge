@@ -4,7 +4,7 @@
     "description": "Empirical verification-and-enforcement loop for autonomous systems.",
     "main": "bin/openjudge.js",
     "bin": {
-        "openjudge": "./bin/openjudge.js"
+        "openjudge": "bin/openjudge.js"
     },
     "scripts": {
         "test": "python test_suite.py"
