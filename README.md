@@ -136,6 +136,21 @@ uvicorn api:app --host 0.0.0.0 --port 8000
 
 ---
 
+## 🚀 Premium Enterprise Use Cases
+
+OpenJudge converts conversational AI into a mathematically bound execution engine. We have documented 6 high-fidelity architecture patterns demonstrating the immediate business value of the OpenJudge V3 SDK:
+
+| Use Case | Description | Primary Tools Used |
+| :--- | :--- | :--- |
+| **[01. Autonomous QA Testing](docs/use-cases/01-autonomous-qa.md)** | Replace fragile Cypress/Selenium scripts with reliable, self-healing Visual QA bots. | `browser_action`, `Vision API` |
+| **[02. Data Extraction](docs/use-cases/02-data-extraction.md)** | Extract financial or legal data from live sites/PDFs with zero hallucination. | `browser_action`, `read_file` |
+| **[03. Self-Healing DevOps](docs/use-cases/03-devops-infrastructure.md)** | Autonomously diagnose server logs and deploy bash remediations at 3 AM. | `execute_bash`, `read_file` |
+| **[04. Deterministic Code Gen](docs/use-cases/04-code-generation.md)** | Write Python scripts, run them, and recursively fix bugs before delivery. | `execute_python`, `write_file` |
+| **[05. Secure Orchestration](docs/use-cases/05-secure-orchestration.md)** | Use the BYOT SDK to safely route internal APIs without exposing credentials. | `engine.register_tool()` |
+| **[06. Long-Term Memory](docs/use-cases/06-long-term-memory.md)** | Persist state across infinite codebase tokens without hitting API limits. | `memory_query`, ChromaDB |
+
+---
+
 ## 360° Empirical Benchmark Suite
 
 To definitively prove the superiority of an enforced execution cycle over standard conversational APIs, we maintain a strict suite of complex tasks designed to break standard LLMs.
