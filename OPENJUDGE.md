@@ -170,3 +170,17 @@ You have access to the following deterministic tools. When you specify <tool_req
 6. **analyze_image**
    - Payload: filepath|question
    - Use: Utilizing the Vision API to inspect pixels, verify UI screenshots, or analyze image data.
+7. **git_action**
+   - Payload: repo_path|action|[branch]|[message]
+   - Actions: init, clone, commit, push, checkout, status
+   - Use: Safe, zero-hallucination repository orchestration without raw bash errors.
+8. **browser_action**
+   - Payload: url|action|[selector]|[value]
+   - Actions: goto_and_screenshot, extract_html, click, type
+   - Use: Physically controlling a headless Chrome browser to test SPAs, log in, or scrape dynamic DOMs.
+9. **memory_store**
+   - Payload: document_text|[type_tag]
+   - Use: Pushing a factual event or code snippet into ChromaDB Long-Term Vector Memory.
+10. **memory_query**
+   - Payload: semantic_search_query|[count]
+   - Use: Retrieving historical actions or state using semantic RAG from Vector Memory to avoid context bloat.

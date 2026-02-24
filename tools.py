@@ -151,5 +151,106 @@ def analyze_image(image_path: str, question: str) -> str:
         )
         return f"[VISION RESPONSE]\n{vision_response}"
         
+        return f"[VISION RESPONSE]\n{vision_response}"
+        
     except Exception as e:
         return f"[ERROR] Image analysis failed: {str(e)}\n{traceback.format_exc()}"
+
+def git_action(repo_path: str, action: str, branch: str = "", message: str = "") -> str:
+    """
+    Dedicated Git Tool for safe repository orchestration.
+    Actions: 'init', 'clone', 'commit', 'push', 'checkout', 'status'
+    Payload format depends on action.
+    """
+    try:
+        # Default bash execution wrapper for git commands
+        def _run_git(cmd):
+            res = subprocess.run(f"cd \"{repo_path}\" && {cmd}", shell=True, capture_output=True, text=True)
+            if res.returncode != 0:
+                raise Exception(res.stderr.strip() or "Unknown Git Error")
+            return res.stdout.strip()
+
+        if action == "status":
+            return _run_git("git status")
+        elif action == "init":
+            return subprocess.run(f"git init \"{repo_path}\"", shell=True, capture_output=True, text=True).stdout
+        elif action == "clone" and branch: # URL passed in 'branch' param for cloning
+            return subprocess.run(f"git clone \"{branch}\" \"{repo_path}\"", shell=True, capture_output=True, text=True).stdout
+        elif action == "checkout" and branch:
+            return _run_git(f"git checkout -b \"{branch}\" || git checkout \"{branch}\"")
+        elif action == "commit":
+            _run_git("git add -A")
+            msg = message if message else "Autonomous OpenJudge Commit"
+            return _run_git(f"git commit -m \"{msg}\"")
+        elif action == "push":
+            return _run_git("git push origin main")
+            
+        return f"[ERROR] Invalid or unsupported git_action: {action}"
+    except Exception as e:
+        return f"[ERROR] Git Action Failed: {str(e)}"
+
+def browser_action(url: str, action: str, selector: str = "", value: str = "") -> str:
+    """
+    Playwright Browser Automation Tool.
+    Actions: 'goto_and_screenshot', 'extract_html', 'click', 'type'
+    Note: Click/Type actions require a valid DOM selector.
+    """
+    try:
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            
+            page.goto(url, wait_until="domcontentloaded")
+            
+            output = "[SUCCESS] Browser Action Triggered"
+            
+            if action == 'goto_and_screenshot':
+                shot_path = f"screenshot_{os.urandom(4).hex()}.png"
+                page.screenshot(path=shot_path, full_page=True)
+                output = f"Screenshot saved at {shot_path}"
+                
+            elif action == 'extract_html':
+                if selector:
+                    output = page.locator(selector).inner_html()
+                else:
+                    output = page.content()[:3000] # Return the first 3000 chars of body
+                    
+            elif action == 'click' and selector:
+                page.locator(selector).click()
+                output = f"Clicked {selector} successfully."
+                
+            elif action == 'type' and selector and value:
+                page.locator(selector).fill(value)
+                output = f"Typed '{value}' into {selector}."
+                
+            browser.close()
+            return output
+            
+    except Exception as e:
+         return f"[ERROR] Browser Automation Failed: {str(e)}"
+
+def memory_store(document: str, mem_type: str = "general") -> str:
+    """
+    Inserts a factual event, snippet, or codebase summary into Vector Memory (ChromaDB).
+    """
+    import uuid
+    from memory_db import memory_db
+    
+    doc_id = str(uuid.uuid4())
+    result = memory_db.store(action_id=doc_id, document=document, metadata={"type": mem_type})
+    
+    if result is True:
+        return f"[SUCCESS] Stored memory fragment {doc_id} into Vector DB."
+    return f"[ERROR] Failed to store memory: {result}"
+
+def memory_query(query: str, count: str = "3") -> str:
+    """
+    Queries the Vector Memory (ChromaDB) for historical state using RAG semantic extraction.
+    """
+    from memory_db import memory_db
+    try:
+        num = int(count)
+        return memory_db.query(search_text=query, n_results=num)
+    except Exception as e:
+        return f"[ERROR] Memory Query Failed: {str(e)}"

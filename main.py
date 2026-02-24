@@ -53,8 +53,28 @@ def execute_action(action_type: str, tool_req: str, tool_payload: str, state_man
             return tools.analyze_image(parts[0].strip(), parts[1].strip())
         else:
             return "[ERROR] Invalid payload for analyze_image. Expected format: filepath|question"
+    elif tool_req == "git_action":
+        parts = tool_payload.split("|")
+        if len(parts) >= 2:
+            return tools.git_action(parts[0].strip(), parts[1].strip(), parts[2].strip() if len(parts) > 2 else "", parts[3].strip() if len(parts) > 3 else "")
+        return "[ERROR] Invalid payload for git_action. Expected: repo_path|action|[branch]|[message]"
+    elif tool_req == "browser_action":
+        parts = tool_payload.split("|")
+        if len(parts) >= 2:
+            return tools.browser_action(parts[0].strip(), parts[1].strip(), parts[2].strip() if len(parts) > 2 else "", parts[3].strip() if len(parts) > 3 else "")
+        return "[ERROR] Invalid payload for browser_action. Expected: url|action|[selector]|[value]"
+    elif tool_req == "memory_store":
+        parts = tool_payload.split("|", 1)
+        if len(parts) >= 1:
+            return tools.memory_store(parts[0].strip(), parts[1].strip() if len(parts) > 1 else "general")
+        return "[ERROR] Invalid payload for memory_store. Expected: document|[type]"
+    elif tool_req == "memory_query":
+        parts = tool_payload.split("|", 1)
+        if len(parts) >= 1:
+            return tools.memory_query(parts[0].strip(), parts[1].strip() if len(parts) > 1 else "3")
+        return "[ERROR] Invalid payload for memory_query. Expected: query|[count]"
     else:
-        return f"[ERROR] Unknown tool requested: '{tool_req}'. Available: bash, python, read_file, write_file, web_search, analyze_image."
+        return f"[ERROR] Unknown tool requested: '{tool_req}'. Available: bash, python, read_file, write_file, web_search, analyze_image, git_action, browser_action, memory_store, memory_query."
 
 def triage_route(user_goal: str) -> str:
     """
