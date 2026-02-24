@@ -6,7 +6,7 @@
 
   [![Python](https://img.shields.io/badge/Python-3.12+-blue.svg?style=flat-square)](https://python.org)
   [![OpenAI](https://img.shields.io/badge/Vision_Ready-412991.svg?style=flat-square)](https://openai.com)
-  [![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
+  [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0)
 </div>
 
 <br/>
