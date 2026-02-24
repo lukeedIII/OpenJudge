@@ -1,253 +1,243 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1250 550" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="100%" height="100%">
   <defs>
-    <!-- Background Gradient (Vercel/Stripe Dark Mode Style) -->
+    <!-- Deep Space Background -->
     <radialGradient id="bg" cx="50%" cy="50%" r="70%">
-      <stop offset="0%" stop-color="#0F172A" /> <!-- Slate 900 -->
-      <stop offset="100%" stop-color="#020617" /> <!-- Slate 950 -->
+      <stop offset="0%" stop-color="#050811" />
+      <stop offset="100%" stop-color="#010203" />
     </radialGradient>
 
-    <!-- Glass Container Fill -->
-    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.4)" />
-      <stop offset="100%" stop-color="rgba(30, 41, 59, 0.1)" />
-    </linearGradient>
-
-    <!-- Glowing Lines (Path Stroke Colors) -->
-    <linearGradient id="glow-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00f2fe"/>
-      <stop offset="100%" stop-color="#4facfe"/>
-    </linearGradient>
-    <linearGradient id="glow-magenta" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ff0080"/>
-      <stop offset="100%" stop-color="#ff416c"/>
-    </linearGradient>
-    <linearGradient id="glow-green" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00ff88"/>
-      <stop offset="100%" stop-color="#00df6d"/>
-    </linearGradient>
-    <linearGradient id="glow-purple" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#a855f7"/>
-      <stop offset="100%" stop-color="#d946ef"/>
-    </linearGradient>
-    <linearGradient id="glow-orange" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#f97316"/>
-      <stop offset="100%" stop-color="#fb923c"/>
-    </linearGradient>
-
-    <!-- Filters -->
-    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="4" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
+    <!-- Glowing Line Filters (Subtle and Clean) -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
     </filter>
-    <filter id="strong-glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="12" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
+    <filter id="glow-orange" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
     </filter>
-    <filter id="drop-shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.8"/>
+    <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+    <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+    <filter id="glow-magenta" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
     </filter>
 
-    <!-- Arrow Markers -->
+    <!-- Block Drop Shadows -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="15" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+
+    <!-- Precise Directional Arrows -->
     <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#00f2fe"/>
     </marker>
-    <marker id="arrow-magenta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ff0080"/>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ff4b2b"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7"/>
     </marker>
     <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#00ff88"/>
     </marker>
-    <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d946ef"/>
-    </marker>
-    <marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f97316"/>
-    </marker>
-    <marker id="arrow-white" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94A3B8"/>
+    <marker id="arrow-magenta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ff0080"/>
     </marker>
 
-    <!-- Blueprint Crosshair Pattern -->
-    <pattern id="crosshair" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 20 18 L 20 22 M 18 20 L 22 20" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none"/>
+    <!-- Architectural Background Grid -->
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
     </pattern>
+
+    <!-- Block Clip Path to contain internal animations -->
+    <clipPath id="center-clip">
+      <rect x="401" y="41" width="398" height="418" rx="15"/>
+    </clipPath>
   </defs>
 
   <!-- ========================================== -->
-  <!-- BACKGROUND LAYER                           -->
+  <!-- CANVAS LAYER                               -->
   <!-- ========================================== -->
-  <rect width="1250" height="550" fill="url(#bg)"/>
-  <rect width="1250" height="550" fill="url(#crosshair)"/>
-  
-  <text x="625" y="45" font-family="'Inter', sans-serif" font-weight="900" font-size="24" fill="#E2E8F0" text-anchor="middle" letter-spacing="3" filter="url(#soft-glow)">
-    OPENJUDGE V3 <tspan fill="#00f2fe">ENTERPRISE PIPELINE</tspan>
-  </text>
-  <line x1="250" y1="65" x2="1000" y2="65" stroke="#1E293B" stroke-width="1.5" />
+  <rect width="1200" height="500" fill="url(#bg)"/>
+  <rect width="1200" height="500" fill="url(#grid)"/>
+
+  <!-- Top Headers for the 3 Major Pillars -->
+  <text x="145" y="25" font-family="'Inter', Arial, sans-serif" font-weight="900" font-size="13" fill="#64748b" text-anchor="middle" letter-spacing="3">CLIENT ENVIRONMENT</text>
+  <text x="600" y="25" font-family="'Inter', Arial, sans-serif" font-weight="900" font-size="13" fill="#94a3b8" text-anchor="middle" letter-spacing="3">OPENJUDGE V3 MICROSERVICE</text>
+  <text x="1055" y="25" font-family="'Inter', Arial, sans-serif" font-weight="900" font-size="13" fill="#64748b" text-anchor="middle" letter-spacing="3">EXTERNAL LLM GATEWAY</text>
+
 
   <!-- ========================================== -->
-  <!-- CONTAINERS (Drop Shadowed Glass Panels)    -->
-  <!-- ========================================== -->
-  
-  <!-- Left Panel: Client Layer -->
-  <rect x="50" y="100" width="250" height="400" rx="16" fill="url(#glass)" stroke="#334155" stroke-width="1.5" filter="url(#drop-shadow)"/>
-  <text x="175" y="135" font-family="'Inter', sans-serif" font-weight="bold" font-size="14" fill="#94A3B8" text-anchor="middle" letter-spacing="2">CLIENT APPLICATION</text>
-  
-  <!-- Center Panel: OpenJudge Engine -->
-  <rect x="450" y="100" width="350" height="400" rx="16" fill="url(#glass)" stroke="#00f2fe" stroke-width="1.5" filter="url(#drop-shadow)"/>
-  <rect x="450" y="100" width="350" height="400" rx="16" fill="none" stroke="#00f2fe" stroke-width="2" filter="url(#soft-glow)" opacity="0.3"/>
-  <text x="625" y="135" font-family="'Inter', sans-serif" font-weight="900" font-size="16" fill="#00f2fe" text-anchor="middle" letter-spacing="2" filter="url(#soft-glow)">OPENJUDGE MICROSERVICE</text>
-  
-  <!-- Right Panel: LLM Gateway -->
-  <rect x="950" y="170" width="250" height="260" rx="16" fill="url(#glass)" stroke="#ff0080" stroke-width="1.5" filter="url(#drop-shadow)"/>
-  <rect x="950" y="170" width="250" height="260" rx="16" fill="none" stroke="#ff0080" stroke-width="2" filter="url(#soft-glow)" opacity="0.3"/>
-  <text x="1075" y="205" font-family="'Inter', sans-serif" font-weight="bold" font-size="14" fill="#ff0080" text-anchor="middle" letter-spacing="2" filter="url(#soft-glow)">LLM GATEWAY</text>
-
-  <!-- ========================================== -->
-  <!-- NODES (Inside Containers)                  -->
+  <!-- THE THREE ARCHITECTURAL PILLARS            -->
   <!-- ========================================== -->
 
-  <!-- Left Nodes -->
-  <g transform="translate(75, 170)">
-    <rect width="200" height="80" rx="8" fill="#020617" stroke="#334155" stroke-width="1.5"/>
-    <text x="100" y="35" font-family="'Inter', sans-serif" font-weight="bold" font-size="14" fill="#F8FAFC" text-anchor="middle">Backend Server</text>
-    <text x="100" y="55" font-family="'Consolas', monospace" font-size="12" fill="#64748B" text-anchor="middle">(Python / Node.js)</text>
+  <!-- [1] LEFT PILLAR: CLIENT ENVIRONMENT -->
+  <rect x="40" y="40" width="210" height="420" rx="16" fill="#0a0c14" stroke="#1f2536" stroke-width="2" filter="url(#shadow)"/>
+  
+  <!-- Left Pillar Sub-Nodes -->
+  <g transform="translate(60, 90)">
+    <rect width="170" height="60" rx="8" fill="#111624" stroke="#1f2536" stroke-width="1.5"/>
+    <text x="85" y="26" font-family="'Inter', Arial, sans-serif" font-weight="bold" font-size="13" fill="#f8fafc" text-anchor="middle">Backend Server</text>
+    <text x="85" y="44" font-family="'Consolas', monospace" font-size="11" fill="#64748b" text-anchor="middle">Node.js / Python</text>
   </g>
 
-  <g transform="translate(75, 340)">
-    <rect width="200" height="80" rx="8" fill="#020617" stroke="#334155" stroke-width="1.5"/>
-    <text x="100" y="35" font-family="'Inter', sans-serif" font-weight="bold" font-size="14" fill="#F8FAFC" text-anchor="middle">Observer Dashboard</text>
-    <text x="100" y="55" font-family="'Consolas', monospace" font-size="12" fill="#64748B" text-anchor="middle">(React / Next.js)</text>
+  <g transform="translate(60, 170)">
+    <rect width="170" height="60" rx="8" fill="#111624" stroke="#ff4b2b" stroke-width="1.5" opacity="0.8"/>
+    <text x="85" y="26" font-family="'Inter', Arial, sans-serif" font-weight="bold" font-size="13" fill="#f8fafc" text-anchor="middle">Observer UI</text>
+    <text x="85" y="44" font-family="'Consolas', monospace" font-size="11" fill="#ff4b2b" text-anchor="middle" filter="url(#glow-orange)">React Dashboard</text>
   </g>
 
-  <!-- Center Nodes (The Engine) -->
-  <g transform="translate(475, 160)">
-    <rect width="300" height="60" rx="8" fill="#020617" stroke="#334155" stroke-width="1.5"/>
-    <circle cx="20" cy="30" r="4" fill="#00f2fe" filter="url(#soft-glow)"/>
-    <text x="150" y="35" font-family="'Consolas', monospace" font-weight="bold" font-size="14" fill="#F8FAFC" text-anchor="middle">FastAPI Route Endpoint</text>
+  <g transform="translate(60, 250)">
+    <rect width="170" height="60" rx="8" fill="#111624" stroke="#1f2536" stroke-width="1.5"/>
+    <text x="85" y="26" font-family="'Inter', Arial, sans-serif" font-weight="bold" font-size="13" fill="#f8fafc" text-anchor="middle">Custom SDK Tools</text>
+    <text x="85" y="44" font-family="'Consolas', monospace" font-size="11" fill="#64748b" text-anchor="middle">Local Function logic</text>
   </g>
 
-  <g transform="translate(475, 260)">
-    <rect width="300" height="100" rx="8" fill="#020617" stroke="#1E293B" stroke-width="1.5"/>
-    <!-- Deep glowing core bg for state manager -->
-    <rect width="300" height="100" rx="8" fill="url(#glow-orange)" opacity="0.05" filter="url(#strong-glow)"/>
-    <circle cx="20" cy="35" r="4" fill="#f97316" filter="url(#soft-glow)">
-      <animate attributeName="opacity" values="1;0.4;1" dur="1s" repeatCount="indefinite"/>
+  <!-- [2] CENTER PILLAR: OPENJUDGE ENGINE -->
+  <rect x="400" y="40" width="400" height="420" rx="16" fill="#050811" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="401" y="41" width="398" height="418" rx="15" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+  
+  <!-- Subtle Internal Vertical Scanning Animation representing the "Engine" -->
+  <g clip-path="url(#center-clip)">
+    <line x1="400" y1="0" x2="400" y2="500" stroke="#00f2fe" stroke-width="1.5" opacity="0.3" filter="url(#glow-cyan)">
+      <animateTransform attributeName="transform" type="translate" values="0,0; 400,0; 0,0" dur="8s" repeatCount="indefinite" />
+    </line>
+  </g>
+
+  <!-- Center Pillar Sub-Nodes -->
+  <g transform="translate(430, 90)">
+    <!-- Spans Y=90 to Y=230, catching both Y=120 and Y=200 Data Lanes -->
+    <rect width="340" height="140" rx="12" fill="#0a0c14" stroke="#00f2fe" stroke-width="1.5" opacity="0.9"/>
+    <text x="170" y="65" font-family="'Inter', Arial, sans-serif" font-weight="bold" font-size="16" fill="#00f2fe" text-anchor="middle" filter="url(#glow-cyan)">FastAPI Data Hub</text>
+    <text x="170" y="85" font-family="'Consolas', monospace" font-size="12" fill="#94a3b8" text-anchor="middle">Async Request &amp; SSE Stream Controller</text>
+  </g>
+
+  <g transform="translate(430, 250)">
+    <!-- Spans Y=250 to Y=310, catching Y=280 Lane -->
+    <rect width="340" height="60" rx="12" fill="#0a0c14" stroke="#a855f7" stroke-width="1.5" opacity="0.9"/>
+    <text x="170" y="35" font-family="'Inter', Arial, sans-serif" font-weight="bold" font-size="15" fill="#a855f7" text-anchor="middle" filter="url(#glow-purple)">Enterprise BYOT Registry</text>
+  </g>
+
+  <g transform="translate(430, 330)">
+    <!-- Spans Y=330 to Y=440, catching Y=350 & Y=390 Lanes -->
+    <rect width="340" height="110" rx="12" fill="#0a0c14" stroke="#00ff88" stroke-width="1.5" opacity="0.9"/>
+    <!-- Internal ledger blinking light -->
+    <circle cx="20" cy="20" r="4" fill="#00ff88" filter="url(#glow-green)">
+       <animate attributeName="opacity" values="1;0.2;1" dur="1s" repeatCount="indefinite"/>
     </circle>
-    <text x="150" y="40" font-family="'Inter', sans-serif" font-weight="bold" font-size="15" fill="#F8FAFC" text-anchor="middle">State Manager &amp; Ledger</text>
-    <text x="150" y="65" font-family="'Consolas', monospace" font-size="12" fill="#94A3B8" text-anchor="middle">(Mathematical Verification)</text>
+    <text x="170" y="55" font-family="'Inter', Arial, sans-serif" font-weight="bold" font-size="16" fill="#00ff88" text-anchor="middle" filter="url(#glow-green)">Verification Ledger</text>
+    <text x="170" y="75" font-family="'Consolas', monospace" font-size="12" fill="#94a3b8" text-anchor="middle">State Manager &amp; Math Enforcement</text>
   </g>
 
-  <g transform="translate(475, 400)">
-    <rect width="300" height="70" rx="8" fill="#020617" stroke="#334155" stroke-width="1.5"/>
-    <circle cx="20" cy="35" r="4" fill="#d946ef" filter="url(#soft-glow)"/>
-    <text x="150" y="32" font-family="'Inter', sans-serif" font-weight="bold" font-size="14" fill="#F8FAFC" text-anchor="middle">BYOT Custom Tool Registry</text>
-    <text x="150" y="52" font-family="'Consolas', monospace" font-size="12" fill="#64748B" text-anchor="middle">(Native &amp; Dynamic Tools)</text>
-  </g>
-
-  <!-- Right Node (LLM Gateway) -->
-  <g transform="translate(975, 250)">
-    <rect width="200" height="100" rx="8" fill="#020617" stroke="#334155" stroke-width="1.5"/>
-    <!-- Center AI Glowing Orb -->
-    <circle cx="100" cy="50" r="30" fill="none" stroke="#ff0080" stroke-width="2" filter="url(#soft-glow)"/>
-    <circle cx="100" cy="50" r="15" fill="#ff0080" opacity="0.2" filter="url(#strong-glow)">
-      <animate attributeName="opacity" values="0.1; 0.5; 0.1" dur="2s" repeatCount="indefinite"/>
+  <!-- [3] RIGHT PILLAR: LLM GATEWAY -->
+  <rect x="950" y="40" width="210" height="420" rx="16" fill="#0a0c14" stroke="#1f2536" stroke-width="2" filter="url(#shadow)"/>
+  
+  <g transform="translate(970, 90)">
+    <!-- Spans Y=90 to Y=440 (Full height), effortlessly catching both LLM lanes -->
+    <rect width="170" height="350" rx="12" fill="#111624" stroke="#ff0080" stroke-width="1.5" opacity="0.8"/>
+    
+    <!-- Abstract glowing neural core decoration -->
+    <circle cx="85" cy="175" r="45" fill="none" stroke="#ff0080" stroke-width="2" filter="url(#glow-magenta)"/>
+    <circle cx="85" cy="175" r="30" fill="none" stroke="#ff416c" stroke-width="1" stroke-dasharray="4 4">
+      <animateTransform attributeName="transform" type="rotate" from="0 85 175" to="360 85 175" dur="10s" repeatCount="indefinite" />
     </circle>
-    <text x="100" y="55" font-family="'Inter', sans-serif" font-weight="bold" font-size="14" fill="#F8FAFC" text-anchor="middle">GPT-4o</text>
+    <circle cx="85" cy="175" r="10" fill="#ff0080" filter="url(#glow-magenta)">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    
+    <text x="85" y="160" font-family="'Inter', Arial, sans-serif" font-weight="900" font-size="16" fill="#f8fafc" text-anchor="middle">GPT-4o</text>
+    <text x="85" y="250" font-family="'Consolas', monospace" font-size="11" fill="#94a3b8" text-anchor="middle">Strict XML Output Parser</text>
   </g>
 
 
-  <!-- ========================================== -->
-  <!-- DIRECTIONAL BEZIER CURVES & DATA PIPELINES -->
-  <!-- ========================================== -->
-
-  <!-- [0] BYOT Injection (Backend -> Tool Registry) -->
+  <!-- ============================================== -->
+  <!-- PERFECTLY RIGID HORIZONTAL DATA LANES          -->
+  <!-- ============================================== -->
+  
+  <!-- LANE 1: POST /execute (Left -> Center at Y=120) -->
   <g>
-    <!-- Background track -->
-    <path d="M 175 250 L 175 435 Q 175 445 185 445 L 475 445" fill="none" stroke="#1E293B" stroke-width="2" />
-    <!-- Animated Flow -->
-    <path id="path0" d="M 175 250 L 175 435 Q 175 445 185 445 L 465 445" fill="none" stroke="#d946ef" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#arrow-purple)">
-      <animate attributeName="stroke-dashoffset" values="14;0" dur="0.8s" repeatCount="indefinite"/>
-    </path>
-    <!-- Number Badge -->
-    <circle cx="340" cy="445" r="10" fill="#0F172A" stroke="#d946ef" stroke-width="1.5"/>
-    <text x="340" y="448" font-family="'Consolas', monospace" font-size="10" fill="#F8FAFC" font-weight="bold" text-anchor="middle" dominant-baseline="middle">0</text>
-    <!-- Label -->
-    <text x="340" y="430" font-family="'Consolas', monospace" font-size="12" fill="#d946ef" text-anchor="middle" filter="url(#soft-glow)">.register_tool()</text>
+    <!-- Background Track -->
+    <line x1="250" y1="120" x2="400" y2="120" stroke="#1f2536" stroke-width="2"/>
+    <!-- Animated Dash Line -->
+    <line x1="250" y1="120" x2="390" y2="120" stroke="#00f2fe" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow-cyan)">
+      <animate attributeName="stroke-dashoffset" values="10; 0" dur="0.8s" repeatCount="indefinite" />
+    </line>
+    <!-- Particle Packet -->
+    <circle r="4" fill="#00f2fe" filter="url(#glow-cyan)">
+      <animateMotion dur="1s" repeatCount="indefinite" path="M 250 120 L 390 120"/>
+    </circle>
+    <!-- Text Label -->
+    <text x="325" y="110" font-family="'Consolas', monospace" font-size="11" font-weight="bold" fill="#00f2fe" text-anchor="middle" filter="url(#glow-cyan)">POST /execute</text>
   </g>
 
-  <!-- [1] POST Request (Backend -> FastAPI) -->
+  <!-- LANE 2: SSE Telemetry JSON Stream (Center -> Left at Y=200) -->
   <g>
-    <path d="M 275 210 C 350 210, 350 190, 475 190" fill="none" stroke="#1E293B" stroke-width="2" />
-    <path id="path1" d="M 275 210 C 350 210, 350 190, 465 190" fill="none" stroke="#00f2fe" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#arrow-cyan)">
-      <animate attributeName="stroke-dashoffset" values="14;0" dur="0.8s" repeatCount="indefinite"/>
-    </path>
-    <circle cx="375" cy="198" r="10" fill="#0F172A" stroke="#00f2fe" stroke-width="1.5"/>
-    <text x="375" y="201" font-family="'Consolas', monospace" font-size="10" fill="#F8FAFC" font-weight="bold" text-anchor="middle" dominant-baseline="middle">1</text>
-    <text x="375" y="180" font-family="'Consolas', monospace" font-size="12" fill="#00f2fe" font-weight="bold" text-anchor="middle" filter="url(#soft-glow)">POST /execute</text>
+    <!-- Background Track -->
+    <line x1="400" y1="200" x2="250" y2="200" stroke="#1f2536" stroke-width="2"/>
+    <!-- Thick Solid Stream glowing line -->
+    <line x1="390" y1="200" x2="260" y2="200" stroke="#ff4b2b" stroke-width="4" marker-end="url(#arrow-orange)" filter="url(#glow-orange)" opacity="0.6"/>
+    <!-- Packet 1 -->
+    <circle r="5" fill="#ff4b2b" filter="url(#glow-orange)">
+      <animateMotion dur="1.5s" repeatCount="indefinite" path="M 400 200 L 250 200"/>
+      <animate attributeName="opacity" values="1; 0.2" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Packet 2 -->
+    <circle r="5" fill="#ff4b2b" filter="url(#glow-orange)">
+      <animateMotion dur="1.5s" begin="0.75s" repeatCount="indefinite" path="M 400 200 L 250 200"/>
+      <animate attributeName="opacity" values="1; 0.2" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Text Label -->
+    <text x="325" y="190" font-family="'Consolas', monospace" font-size="11" font-weight="bold" fill="#ff4b2b" text-anchor="middle" filter="url(#glow-orange)">SSE JSON Stream</text>
   </g>
 
-  <!-- [2] Init Loop (FastAPI -> State Manager) -->
+  <!-- LANE 3: BYOT Tool Injection (Left -> Center at Y=280) -->
   <g>
-    <path d="M 625 220 L 625 260" fill="none" stroke="#1E293B" stroke-width="2" />
-    <path id="path2" d="M 625 220 L 625 250" fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow-white)">
-      <animate attributeName="stroke-dashoffset" values="10;0" dur="1s" repeatCount="indefinite"/>
-    </path>
-    <rect x="635" y="230" width="85" height="20" rx="4" fill="#0F172A" stroke="#334155" stroke-width="1"/>
-    <text x="677" y="244" font-family="'Consolas', monospace" font-size="11" fill="#94A3B8" text-anchor="middle">Initialize</text>
+    <line x1="250" y1="280" x2="400" y2="280" stroke="#1f2536" stroke-width="2"/>
+    <line x1="250" y1="280" x2="390" y2="280" stroke="#a855f7" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#arrow-purple)">
+      <animate attributeName="stroke-dashoffset" values="16; 0" dur="1s" repeatCount="indefinite" />
+    </line>
+    <!-- Packet -->
+    <rect x="-6" y="-3" width="12" height="6" rx="2" fill="#a855f7" filter="url(#glow-purple)">
+      <animateMotion dur="1.2s" repeatCount="indefinite" path="M 250 280 L 390 280" rotate="auto"/>
+    </rect>
+    <text x="325" y="270" font-family="'Consolas', monospace" font-size="11" font-weight="bold" fill="#a855f7" text-anchor="middle" filter="url(#glow-purple)">Inject SDK Tools</text>
   </g>
 
-  <!-- [3] Outbound Context Prompt (Manager -> LLM) -->
+  <!-- LANE 4: XML System Prompt Context (Center -> Right at Y=350) -->
   <g>
-    <path d="M 775 285 L 975 285" fill="none" stroke="#1E293B" stroke-width="2" />
-    <path id="path3" d="M 775 285 L 965 285" fill="none" stroke="#ff0080" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#arrow-magenta)">
-      <animate attributeName="stroke-dashoffset" values="14;0" dur="0.8s" repeatCount="indefinite"/>
-    </path>
-    <circle cx="875" cy="285" r="10" fill="#0F172A" stroke="#ff0080" stroke-width="1.5"/>
-    <text x="875" y="288" font-family="'Consolas', monospace" font-size="10" fill="#F8FAFC" font-weight="bold" text-anchor="middle" dominant-baseline="middle">3</text>
-    <text x="875" y="272" font-family="'Consolas', monospace" font-size="12" fill="#ff0080" text-anchor="middle" filter="url(#soft-glow)">Dynamic Inject Prompt</text>
+    <line x1="800" y1="350" x2="950" y2="350" stroke="#1f2536" stroke-width="2"/>
+    <line x1="800" y1="350" x2="940" y2="350" stroke="#00ff88" stroke-width="3" stroke-dasharray="12 6" marker-end="url(#arrow-green)">
+      <animate attributeName="stroke-dashoffset" values="18; 0" dur="0.8s" repeatCount="indefinite" />
+    </line>
+    <circle r="4" fill="#00ff88" filter="url(#glow-green)">
+      <animateMotion dur="1.2s" repeatCount="indefinite" path="M 800 350 L 940 350"/>
+    </circle>
+    <text x="875" y="340" font-family="'Consolas', monospace" font-size="11" font-weight="bold" fill="#00ff88" text-anchor="middle" filter="url(#glow-green)">Dynamic XML Prompt</text>
   </g>
 
-  <!-- [4] Raw XML Response (LLM -> Manager) -->
+  <!-- LANE 5: Raw XML Output Response (Right -> Center at Y=390) -->
   <g>
-    <path d="M 975 325 L 775 325" fill="none" stroke="#1E293B" stroke-width="2" />
-    <path id="path4" d="M 975 325 L 785 325" fill="none" stroke="#00ff88" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#arrow-green)">
-      <animate attributeName="stroke-dashoffset" values="0;14" dur="0.8s" repeatCount="indefinite"/>
-    </path>
-    <circle cx="875" cy="325" r="10" fill="#0F172A" stroke="#00ff88" stroke-width="1.5"/>
-    <text x="875" y="328" font-family="'Consolas', monospace" font-size="10" fill="#020617" font-weight="bold" text-anchor="middle" dominant-baseline="middle">4</text>
-    <text x="875" y="345" font-family="'Consolas', monospace" font-size="12" fill="#00ff88" text-anchor="middle" filter="url(#soft-glow)">Raw XML Verification</text>
-  </g>
-
-  <!-- [5] Tool Execution Loop (Manager <-> Registry) -->
-  <g>
-    <!-- Request -->
-    <path d="M 575 360 L 575 400" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow-orange)">
-      <animate attributeName="stroke-dashoffset" values="10;0" dur="1s" repeatCount="indefinite"/>
-    </path>
-    <!-- Response -->
-    <path d="M 675 400 L 675 360" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow-orange)">
-       <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
-    </path>
-    <circle cx="625" cy="380" r="10" fill="#0F172A" stroke="#f97316" stroke-width="1.5"/>
-    <text x="625" y="383" font-family="'Consolas', monospace" font-size="10" fill="#F8FAFC" font-weight="bold" text-anchor="middle" dominant-baseline="middle">5</text>
-    <text x="690" y="384" font-family="'Consolas', monospace" font-size="11" fill="#f97316" text-anchor="start">Execute / Enforce</text>
-  </g>
-
-  <!-- [6] Stream Yield (Manager -> Dashboard) -->
-  <g>
-    <path d="M 475 310 C 375 310, 375 380, 275 380" fill="none" stroke="#1E293B" stroke-width="2" />
-    <path id="path6" d="M 475 310 C 375 310, 375 380, 285 380" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#arrow-orange)">
-      <animate attributeName="stroke-dashoffset" values="0;14" dur="0.8s" repeatCount="indefinite"/>
-    </path>
-    <circle cx="375" cy="347" r="10" fill="#0F172A" stroke="#f97316" stroke-width="1.5"/>
-    <text x="375" y="350" font-family="'Consolas', monospace" font-size="10" fill="#F8FAFC" font-weight="bold" text-anchor="middle" dominant-baseline="middle">6</text>
-    <text x="375" y="328" font-family="'Consolas', monospace" font-size="12" fill="#f97316" font-weight="bold" text-anchor="middle" filter="url(#soft-glow)">yield SSE JSON Telemetry</text>
+    <line x1="950" y1="390" x2="800" y2="390" stroke="#1f2536" stroke-width="2"/>
+    <line x1="950" y1="390" x2="810" y2="390" stroke="#ff0080" stroke-width="3" stroke-dasharray="2 12" marker-end="url(#arrow-magenta)">
+      <animate attributeName="stroke-dashoffset" values="0; 14" dur="0.5s" repeatCount="indefinite" />
+    </line>
+    <!-- High frequency token emulation dots -->
+    <circle r="2.5" fill="#ff0080" filter="url(#glow-magenta)">
+      <animateMotion dur="0.6s" repeatCount="indefinite" path="M 950 390 L 810 390"/>
+    </circle>
+    <circle r="2.5" fill="#ff0080" filter="url(#glow-magenta)">
+      <animateMotion dur="0.6s" begin="0.2s" repeatCount="indefinite" path="M 950 390 L 810 390"/>
+    </circle>
+    <circle r="2.5" fill="#ff0080" filter="url(#glow-magenta)">
+      <animateMotion dur="0.6s" begin="0.4s" repeatCount="indefinite" path="M 950 390 L 810 390"/>
+    </circle>
+    <text x="875" y="380" font-family="'Consolas', monospace" font-size="11" font-weight="bold" fill="#ff0080" text-anchor="middle" filter="url(#glow-magenta)">Raw XML Generation</text>
   </g>
 
 </svg>
