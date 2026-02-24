@@ -37,8 +37,16 @@ A continuous autonomous routine executing within a terminal UI. Structural viola
 
 ## Installation
 
-**Prerequisites:** Python 3.10+, OpenAI API Key.
+**Prerequisites:** Python 3.10+, Node.js (for NPM execution), OpenAI API Key.
 
+### Option 1: Global NPM Install (Recommended)
+You can install and run OpenJudge anywhere on your system via NPM:
+```bash
+npm install -g openjudge
+```
+*Note: Ensure your `OPENAI_API_KEY` is exported in your environment variables before running.*
+
+### Option 2: Local Git Clone
 ```bash
 git clone https://github.com/lukeedIII/OpenJudge.git
 cd OpenJudge
@@ -49,14 +57,31 @@ cp .env.example .env
 
 ## Usage
 
-Verify the local toolchains (bash, python, I/O) without incurring API costs:
+### Using NPX / NPM
+If installed globally via NPM, simply run:
+```bash
+openjudge
+```
+Or execute directly without installing:
+```bash
+npx openjudge
+```
+
+### Using Python Local Source
+Initialize the autonomous Judge runtime:
+```bash
+python main.py
+```
+
+### Testing the Engine
+To verify the local toolchains (bash, python, I/O) without incurring API costs:
 ```bash
 python sanity_check.py
 ```
 
-Initialize the autonomous Judge runtime:
+To run the rigorous, deterministic test suite verifying the internal XML parser and physical execution bindings:
 ```bash
-python main.py
+npm run test  # Or: python test_suite.py
 ```
 
 ## Observer UI
