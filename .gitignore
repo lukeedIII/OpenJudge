@@ -1,0 +1,11 @@
+# Environments
+.env
+
+# Cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Testing Harness
+.test_env/
+openjudge_memory_db/
