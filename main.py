@@ -56,6 +56,37 @@ def execute_action(action_type: str, tool_req: str, tool_payload: str, state_man
     else:
         return f"[ERROR] Unknown tool requested: '{tool_req}'. Available: bash, python, read_file, write_file, web_search, analyze_image."
 
+def triage_route(user_goal: str) -> str:
+    """
+    A lightweight, token-optimized LLM call to categorize the user's intent.
+    Returns either 'CHAT' or 'ENGINE'.
+    """
+    system_prompt = (
+        "You are a cognitive routing matrix. The user will give an objective. "
+        "If the objective is a simple conversational question that requires NO physical execution, "
+        "NO file writing, NO bash commands, and NO complex verification logic, reply exactly with 'ROUTE: CHAT'. "
+        "If it requires physical tools, creating files, web searching, logic, or complex execution, "
+        "reply exactly with 'ROUTE: ENGINE'."
+    )
+    
+    console.print(">>> [Triage Router] Classifying Request Complexity...", style="dim italic")
+    raw_response = call_llm(system_prompt, user_goal)
+    
+    # Default to ENGINE for safety if the LLM hallucinated
+    if "ROUTE: CHAT" in raw_response.upper():
+        return "CHAT"
+    return "ENGINE"
+
+def execute_chat_route(user_goal: str):
+    """
+    Executes a standard, low-cost conversational LLM call.
+    """
+    console.print("[*] Triage Router selected: [bold green]CHAT ROUTE[/bold green] (Verification Engine Bypassed)", style="yellow")
+    sys_prompt = "You are a helpful, brilliant AI assistant operating within the OpenJudge ecosystem. Provide a clear, factual answer."
+    console.print(">>> [LLM Standard Inference Engaged...]", style="dim")
+    response = call_llm(sys_prompt, user_goal)
+    console.print(Panel(response, title="OpenJudge Fast-Chat Response", border_style="blue"))
+
 def main(automated_goal: str = None):
     console.print(Panel("=== Booting OpenJudge Production Runtime ===", style="bold blue"))
     
@@ -81,7 +112,12 @@ def main(automated_goal: str = None):
         console.print("\n--- Mission Control ---", style="bold cyan")
         user_goal = input("Enter the objective for OpenJudge: ")
     
-    # 3. Enter the autonomous while True loop
+    # 3. Fast Triage Routing Step
+    if triage_route(user_goal) == "CHAT":
+        execute_chat_route(user_goal)
+        return
+        
+    # 4. Enter the autonomous while True loop
     console.print("\n[+] Entering Autonomous Agentic Loop...", style="bold green")
     
     while True:
