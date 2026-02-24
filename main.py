@@ -56,7 +56,7 @@ def execute_action(action_type: str, tool_req: str, tool_payload: str, state_man
     else:
         return f"[ERROR] Unknown tool requested: '{tool_req}'. Available: bash, python, read_file, write_file, web_search, analyze_image."
 
-def main():
+def main(automated_goal: str = None):
     console.print(Panel("=== Booting OpenJudge Production Runtime ===", style="bold blue"))
     
     # 1. Read OPENJUDGE.md
@@ -73,9 +73,13 @@ def main():
     parser = OpenJudgeParser()
     state_manager = StateManager()
 
-    # 2. Accept final user goal via terminal input
-    console.print("\n--- Mission Control ---", style="bold cyan")
-    user_goal = input("Enter the objective for OpenJudge: ")
+    # 2. Accept final user goal via terminal input or parameter
+    if automated_goal:
+        user_goal = automated_goal
+        console.print(f"\n--- Mission Control (Automated Mode) ---\nObjective: {user_goal}", style="bold cyan")
+    else:
+        console.print("\n--- Mission Control ---", style="bold cyan")
+        user_goal = input("Enter the objective for OpenJudge: ")
     
     # 3. Enter the autonomous while True loop
     console.print("\n[+] Entering Autonomous Agentic Loop...", style="bold green")
