@@ -2,9 +2,9 @@
   <defs>
     <!-- Background -->
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#090a0f"/>
-      <stop offset="50%" stop-color="#11131c"/>
-      <stop offset="100%" stop-color="#05060a"/>
+      <stop offset="0%" stop-color="#05060a"/>
+      <stop offset="50%" stop-color="#0a0c14"/>
+      <stop offset="100%" stop-color="#020305"/>
     </linearGradient>
 
     <!-- Gradients -->
@@ -16,21 +16,16 @@
       <stop offset="0%" stop-color="#00f2fe"/>
       <stop offset="100%" stop-color="#4facfe"/>
     </linearGradient>
-    <linearGradient id="metal" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#2d334a"/>
-      <stop offset="50%" stop-color="#141824"/>
-      <stop offset="100%" stop-color="#0a0c12"/>
-    </linearGradient>
 
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="6" result="blur" />
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
       <feMerge>
         <feMergeNode in="blur" />
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
-    <filter id="lightGlow">
-      <feGaussianBlur stdDeviation="3" result="blur" />
+    <filter id="lightGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
       <feMerge>
         <feMergeNode in="blur" />
         <feMergeNode in="SourceGraphic" />
@@ -38,88 +33,137 @@
     </filter>
   </defs>
 
+  <!-- Background Base -->
   <rect width="1000" height="300" rx="16" fill="url(#bg)"/>
-  <rect width="1000" height="300" rx="16" fill="none" stroke="#2d334a" stroke-width="2"/>
+  <rect width="1000" height="300" rx="16" fill="none" stroke="#1f2536" stroke-width="2"/>
 
-  <!-- Subtle grid -->
-  <g opacity="0.05">
+  <!-- Animated Grid (Translates diagonally to simulate motion) -->
+  <g opacity="0.08">
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <animateTransform attributeName="patternTransform" type="translate" from="0 0" to="40 40" dur="3s" repeatCount="indefinite"/>
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#4facfe" stroke-width="1"/>
     </pattern>
-    <rect width="1000" height="300" fill="url(#grid)" rx="16"/>
+    <rect width="1000" height="300" rx="16" fill="url(#grid)"/>
   </g>
 
-  <!-- Left Side: Graphic -->
-  <g transform="translate(180, 160)">
+  <!-- Left Side: Verification Core (The Eye of the Judge) -->
+  <g transform="translate(180, 150)">
     
-    <!-- Shockwave Rings (Base of Anvil) -->
-    <ellipse cx="0" cy="53" rx="110" ry="22" fill="none" stroke="url(#neonCyan)" stroke-width="2" filter="url(#glow)" opacity="0.4"/>
-    <ellipse cx="0" cy="53" rx="150" ry="30" fill="none" stroke="url(#neonCyan)" stroke-width="1" filter="url(#lightGlow)" opacity="0.2"/>
+    <!-- Deep Pulse Aura -->
+    <circle cx="0" cy="0" r="80" fill="url(#neonCyan)" filter="url(#glow)" opacity="0.1">
+      <animate attributeName="opacity" values="0.05; 0.15; 0.05" dur="4s" repeatCount="indefinite" />
+    </circle>
 
-    <!-- Energy Pedestal (Anvil) -->
-    <!-- Point of impact is exactly at (0, 38) on top of this surface -->
-    <path d="M -30 38 L 30 38 L 45 45 L -45 45 Z" fill="#141824" stroke="url(#neonCyan)" stroke-width="1.5"/>
-    <rect x="-45" y="45" width="90" height="8" rx="2" fill="#0a0c12" stroke="url(#neonCyan)" stroke-width="1.5"/>
-    <ellipse cx="0" cy="38" rx="12" ry="3" fill="#00f2fe" opacity="0.4" filter="url(#glow)"/>
-
-    <!-- Impact Flash (Gavel hits the Anvil) -->
-    <ellipse cx="0" cy="38" rx="8" ry="3" fill="#ffffff" filter="url(#lightGlow)"/>
-    <ellipse cx="0" cy="38" rx="24" ry="6" fill="url(#neonOrange)" filter="url(#glow)" opacity="0.8"/>
-
-    <!-- The Gavel -->
-    <!-- Mathematical Translation ensuring the bottom-right corner of the striking pad hits exactly (0,38) with NO internal clipping -->
-    <g transform="translate(-34.5, -10.5) rotate(35)">
-      
-      <!-- Handle -->
-      <!-- Ends precisely 3px deep into the barrel (y=-15 vs barrel y=-18) so there is 0 clipping -->
-      <path d="M -7 -105 L 7 -105 L 5 -15 L -5 -15 Z" fill="url(#metal)" stroke="url(#neonCyan)" stroke-width="1.5"/>
-      <rect x="-10" y="-115" width="20" height="10" rx="2" fill="#1a1d2e" stroke="url(#neonCyan)" stroke-width="1.5"/>
-      
-      <!-- Handle cyber-accents -->
-      <line x1="-6" y1="-90" x2="6" y2="-90" stroke="url(#neonCyan)" stroke-width="1.5" opacity="0.8"/>
-      <line x1="-5.5" y1="-70" x2="5.5" y2="-70" stroke="url(#neonCyan)" stroke-width="1.5" opacity="0.8"/>
-      <line x1="-5" y1="-50" x2="5" y2="-50" stroke="url(#neonCyan)" stroke-width="1.5" opacity="0.8"/>
-      <line x1="-4.5" y1="-30" x2="4.5" y2="-30" stroke="url(#neonCyan)" stroke-width="1.5" opacity="0.8"/>
-
-      <!-- Barrel Body (Core) -->
-      <rect x="-40" y="-18" width="80" height="36" rx="4" fill="url(#metal)" stroke="url(#neonCyan)" stroke-width="2"/>
-      
-      <!-- Barrel Grooves -->
-      <rect x="-25" y="-18" width="8" height="36" fill="#11131c" opacity="0.8"/>
-      <rect x="17" y="-18" width="8" height="36" fill="#11131c" opacity="0.8"/>
-
-      <!-- Glowing Center Substrate -->
-      <circle cx="0" cy="0" r="8" fill="#090a0f" stroke="url(#neonCyan)" stroke-width="1.5"/>
-      <circle cx="0" cy="0" r="3" fill="url(#neonCyan)" filter="url(#glow)"/>
-
-      <!-- Left Striking Assembly -->
-      <path d="M -40 -14 L -52 -18 L -52 18 L -40 14 Z" fill="#11131c" stroke="url(#neonCyan)" stroke-width="1.5"/>
-      <rect x="-56" y="-20" width="4" height="40" rx="1" fill="url(#neonOrange)" filter="url(#glow)"/>
-
-      <!-- Right Striking Assembly (The Pad Making Contact) -->
-      <path d="M 40 -14 L 52 -18 L 52 18 L 40 14 Z" fill="#11131c" stroke="url(#neonCyan)" stroke-width="1.5"/>
-      <rect x="52" y="-20" width="4" height="40" rx="1" fill="url(#neonOrange)" filter="url(#glow)"/>
+    <!-- Outer Targeting Reticle (Static Corners) -->
+    <g opacity="0.5" stroke="url(#neonCyan)" stroke-width="2" fill="none">
+      <path d="M -90 -110 L -110 -110 L -110 -90" />
+      <path d="M 90 -110 L 110 -110 L 110 -90" />
+      <path d="M -90 110 L -110 110 L -110 90" />
+      <path d="M 90 110 L 110 110 L 110 90" />
     </g>
 
-    <!-- Flying Sparks (Propagating rightward from the impact point) -->
-    <circle cx="15" cy="22" r="2.5" fill="url(#neonOrange)" filter="url(#glow)"/>
-    <circle cx="5" cy="15" r="1.5" fill="#ffffff" filter="url(#glow)"/>
-    <circle cx="25" cy="30" r="2" fill="url(#neonCyan)" filter="url(#glow)"/>
-    <circle cx="-15" cy="25" r="2" fill="url(#neonOrange)" filter="url(#glow)"/>
-    <circle cx="-10" cy="15" r="1.5" fill="#ffffff" filter="url(#glow)"/>
+    <!-- Rotating Outer Radar Ring -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="20s" repeatCount="indefinite" />
+      <circle cx="0" cy="0" r="105" fill="none" stroke="#1f2433" stroke-width="1"/>
+      <circle cx="0" cy="0" r="105" fill="none" stroke="url(#neonCyan)" stroke-width="2" stroke-dasharray="90 30 10 30" filter="url(#lightGlow)" opacity="0.8"/>
+    </g>
+
+    <!-- Counter-Rotating Inner Ring (Orange) -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="14s" repeatCount="indefinite" />
+      <circle cx="0" cy="0" r="80" fill="none" stroke="url(#neonOrange)" stroke-width="1.5" stroke-dasharray="40 20 5 20" opacity="0.7"/>
+    </g>
+
+    <!-- Orbiting Target Particles -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+      <circle cx="105" cy="0" r="3" fill="#ffffff" filter="url(#lightGlow)"/>
+    </g>
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="6s" repeatCount="indefinite"/>
+      <circle cx="80" cy="0" r="2.5" fill="url(#neonOrange)" filter="url(#glow)"/>
+    </g>
+
+    <!-- The Ledger Core (3D Isometric Hexagon replacing flat poly) -->
+    <!-- Pulses to represent data extraction -->
+    <g>
+      <animateTransform attributeName="transform" type="scale" values="1; 1.05; 1" dur="2s" repeatCount="indefinite" />
+      <!-- Top Face -->
+      <polygon points="0,-45 38.97,-22.5 0,0 -38.97,-22.5" fill="#0d1b2a" stroke="url(#neonCyan)" stroke-width="1.5" filter="url(#lightGlow)"/>
+      <!-- Left Face -->
+      <polygon points="0,0 -38.97,-22.5 -38.97,22.5 0,45" fill="#050811" stroke="url(#neonCyan)" stroke-width="1.5"/>
+      <!-- Right Face -->
+      <polygon points="0,0 38.97,-22.5 38.97,22.5 0,45" fill="#0c070c" stroke="url(#neonOrange)" stroke-width="1.5"/>
+    </g>
+
+    <!-- Pulsing Inner Validation Dot -->
+    <circle cx="0" cy="0" r="6" fill="#ffffff" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="5; 7; 5" dur="2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Red Scanning Laser Line sweeping the Core -->
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0,-80; 0,80; 0,-80" dur="4s" repeatCount="indefinite" />
+      <!-- The laser beam -->
+      <line x1="-120" y1="0" x2="120" y2="0" stroke="#ff416c" stroke-width="1.5" filter="url(#glow)">
+        <animate attributeName="opacity" values="0; 0.9; 0; 0.9; 0" keyTimes="0; 0.25; 0.5; 0.75; 1" dur="4s" repeatCount="indefinite"/>
+      </line>
+      <!-- Laser Impact Glow on the Core -->
+      <ellipse cx="0" cy="0" rx="60" ry="3" fill="#ff4b2b" opacity="0.4" filter="url(#glow)">
+        <animate attributeName="opacity" values="0; 0.6; 0; 0.6; 0" keyTimes="0; 0.25; 0.5; 0.75; 1" dur="4s" repeatCount="indefinite"/>
+      </ellipse>
+    </g>
   </g>
 
-  <!-- Right Side: Typography -->
+  <!-- Right Side: Terminal UI & Typography -->
   <g transform="translate(380, 160)">
-    <text x="0" y="0" font-family="'Inter', -apple-system, sans-serif" font-weight="900" font-size="76" fill="#ffffff" letter-spacing="2">
+    
+    <!-- Dynamic State Badge -->
+    <g transform="translate(0, -95)">
+      <rect x="0" y="0" width="230" height="26" rx="4" fill="#0a0c14" stroke="#1f2433" stroke-width="1"/>
+      <circle cx="16" cy="13" r="4" fill="#ff4b2b" filter="url(#lightGlow)">
+        <animate attributeName="opacity" values="1; 0.2; 1" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <text x="30" y="18" font-family="'Consolas', monospace" font-size="13" fill="#4facfe" font-weight="bold" letter-spacing="1">
+        SYS.STATE: <tspan fill="#ff4b2b">ENFORCING</tspan>
+      </text>
+    </g>
+
+    <!-- Typography -->
+    <text x="0" y="0" font-family="'Inter', -apple-system, sans-serif" font-weight="900" font-size="76" fill="#ffffff" letter-spacing="2" filter="url(#lightGlow)">
       OPEN<tspan fill="url(#neonCyan)">JUDGE</tspan>
     </text>
-    <text x="5" y="45" font-family="'Consolas', monospace" font-weight="bold" font-size="18" fill="url(#neonOrange)" letter-spacing="1">
-      &gt;_ TRUST NOTHING. EXECUTE EVERYTHING.
-    </text>
     
-    <text x="0" y="-60" font-family="monospace" font-size="12" fill="#8892b0" opacity="0.7">
-      sys.run("truth_extraction.sh") | status: ENFORCE
+    <text x="5" y="45" font-family="'Consolas', monospace" font-weight="bold" font-size="18" fill="url(#neonOrange)" letter-spacing="1">
+      &gt;_ TRUST NOTHING. EXECUTE EVERYTHING.<tspan fill="#ffffff">
+        <animate attributeName="opacity" values="1; 0; 1" keyTimes="0; 0.5; 1" calcMode="discrete" dur="1s" repeatCount="indefinite"/>█
+      </tspan>
     </text>
+
+    <!-- Execution Progress Bar -->
+    <g transform="translate(5, 75)">
+      <rect x="0" y="0" width="300" height="3" rx="1.5" fill="#1f2433"/>
+      
+      <!-- Progress Bar Clip Mask -->
+      <clipPath id="progressClip">
+        <rect x="0" y="0" width="300" height="3" rx="1.5" />
+      </clipPath>
+      
+      <!-- Animated Buffer Beam -->
+      <g clip-path="url(#progressClip)">
+        <g>
+          <animateTransform attributeName="transform" type="translate" values="-80,0; 300,0" dur="2s" repeatCount="indefinite" />
+          <rect x="0" y="0" width="80" height="3" fill="url(#neonCyan)" filter="url(#glow)"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- Verification Log Stream -->
+    <text x="5" y="105" font-family="'Consolas', monospace" font-size="12" fill="#8892b0" opacity="0.8">
+      sys.run("truth_extraction.sh") | verify_extern: <tspan fill="#00f2fe" filter="url(#lightGlow)">[ OK ]</tspan>
+    </text>
+
   </g>
 </svg>
