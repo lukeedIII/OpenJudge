@@ -1,5 +1,5 @@
 {
-    "name": "openjudge",
+    "name": "@lukeediii/openjudge",
     "version": "2.0.0",
     "description": "Empirical verification-and-enforcement loop for autonomous systems.",
     "main": "bin/openjudge.js",
