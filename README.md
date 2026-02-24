@@ -84,6 +84,11 @@ To run the rigorous, deterministic test suite verifying the internal XML parser 
 npm run test  # Or: python test_suite.py
 ```
 
+To watch a real-time, side-by-side demonstration of OpenJudge dominating a standard LLM on a physical filesystem task:
+```bash
+python compare_demo.py
+```
+
 ## Observer UI
 
 The runtime exposes a continuous telemetry stream via the `rich` library:
