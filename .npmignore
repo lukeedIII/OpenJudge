@@ -6,3 +6,4 @@ failed_state.log
 # ignore artifacts
 .gemini/
 openjudge_memory_db/
+.test_env/
